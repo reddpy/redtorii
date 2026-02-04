@@ -83,27 +83,27 @@ export function Hero() {
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">
               Built by a team from
             </p>
-            <div className="flex items-center gap-10">
+            <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
               <Image
                 src="/logos/cornell.svg"
                 alt="Cornell University"
                 width={120}
                 height={40}
-                className="h-10 w-auto opacity-40 grayscale"
+                className="h-10 sm:h-14 w-auto opacity-40 grayscale"
               />
               <Image
-                src="/logos/stanford.png"
+                src="/logos/stanford.svg"
                 alt="Stanford University"
                 width={40}
                 height={40}
-                className="h-10 w-auto opacity-40 grayscale"
+                className="h-24 sm:h-28 w-auto opacity-40 grayscale"
               />
               <Image
                 src="/logos/new-relic.svg"
                 alt="New Relic"
                 width={120}
                 height={24}
-                className="h-6 w-auto opacity-40 grayscale"
+                className="h-7 sm:h-10 w-auto opacity-40 grayscale"
               />
             </div>
           </motion.div>
