@@ -143,7 +143,7 @@ export function SupportedChannels() {
   return (
     <AnimatedSection
       variants={staggerContainer}
-      className="relative bg-background py-12 lg:py-20 overflow-hidden"
+      className="relative bg-background py-12 lg:py-12 overflow-hidden"
     >
       <div
         id="channels"

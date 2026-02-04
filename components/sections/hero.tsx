@@ -91,62 +91,104 @@ export function Hero() {
                 </div>
               </div>
 
-              {/* Trust page content */}
-              <div className="p-6">
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="h-8 w-8 bg-torii-red flex items-center justify-center">
-                    <span className="text-white font-mono text-xs font-bold">
-                      AC
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-mono text-sm font-bold text-text-primary">
-                      Acme Corp
-                    </p>
-                    <p className="font-mono text-[10px] text-state-verified">
-                      Domain verified
-                    </p>
-                  </div>
-                </div>
+              {/* Scam alert banner */}
+              <div className="bg-state-compromised/10 border-b border-state-compromised/20 px-4 py-2 flex items-center gap-2">
+                <div className="h-1.5 w-1.5 bg-state-compromised rounded-full animate-pulse" />
+                <span className="font-mono text-[10px] font-semibold text-state-compromised">
+                  Active alert:
+                </span>
+                <span className="font-mono text-[10px] text-text-secondary">
+                  Fake &quot;@AcmeSupport&quot; accounts reported on Telegram
+                </span>
+              </div>
 
-                {/* Search bar */}
-                <div className="flex items-center gap-2 border border-border-default bg-background px-3 py-2.5 mb-5">
-                  <Search className="h-4 w-4 text-text-muted" />
-                  <span className="font-mono text-sm text-text-muted">
-                    +1-800-555-0142
+              {/* Trust page content */}
+              <div className="p-5">
+                {/* Company header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-8 w-8 bg-torii-red flex items-center justify-center">
+                      <span className="text-white font-mono text-xs font-bold">
+                        AC
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-mono text-sm font-bold text-text-primary">
+                        Acme Corp
+                      </p>
+                      <p className="font-mono text-[10px] text-state-verified">
+                        Domain verified
+                      </p>
+                    </div>
+                  </div>
+                  <span className="font-mono text-[10px] text-text-muted border border-border-default px-2 py-0.5">
+                    10 channels registered
                   </span>
                 </div>
 
-                {/* Result card */}
-                <div className="border-l-4 border-l-state-verified border border-border-default bg-background p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-state-verified">
-                      Verified
-                    </span>
-                    <span className="font-mono text-[10px] text-text-muted">
-                      Phone
-                    </span>
-                  </div>
-                  <p className="font-mono text-sm font-semibold text-text-primary">
-                    +1-800-555-0142
-                  </p>
-                  <p className="font-mono text-xs text-text-secondary mt-1">
-                    Official support line. Registered Jan 2024.
-                  </p>
+                {/* Search bar */}
+                <div className="flex items-center gap-2 border border-border-default bg-background px-3 py-2.5 mb-4">
+                  <Search className="h-4 w-4 text-text-muted" />
+                  <span className="font-mono text-sm text-text-muted">
+                    Search any phone, email, or handle...
+                  </span>
                 </div>
 
-                {/* Channel list preview */}
-                <div className="mt-4 flex gap-2">
-                  {["Phone", "Email", "Telegram"].map((ch) => (
-                    <span
-                      key={ch}
-                      className="font-mono text-[10px] font-medium text-text-muted border border-border-default px-2 py-0.5"
+                {/* Channel list */}
+                <div className="border border-border-default divide-y divide-border-subtle">
+                  {[
+                    { value: "+1-800-555-0142", desc: "Main support line", type: "Phone", dot: "bg-state-verified", status: "Verified", statusColor: "text-state-verified" },
+                    { value: "@AcmeCorp", desc: "Official account", type: "X / Twitter", dot: "bg-state-verified", status: "Verified", statusColor: "text-state-verified" },
+                    { value: "j.park@acmecorp.com", desc: "James Park — Account Mgr", type: "Email", dot: "bg-state-verified", status: "Verified", statusColor: "text-state-verified" },
+                    { value: "+1-800-555-0199", desc: "Old fraud desk", type: "Phone", dot: "bg-state-deprecated", status: "Retired", statusColor: "text-state-deprecated" },
+                  ].map((ch) => (
+                    <div
+                      key={ch.value}
+                      className="flex items-center justify-between px-3 py-2.5"
                     >
-                      {ch}
-                    </span>
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className={`h-1.5 w-1.5 rounded-full shrink-0 ${ch.dot}`} />
+                        <div className="min-w-0">
+                          <span className="font-mono text-xs text-text-primary block truncate">
+                            {ch.value}
+                          </span>
+                          <span className="font-mono text-[9px] text-text-muted block">
+                            {ch.desc}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider">
+                          {ch.type}
+                        </span>
+                        <span className={`font-mono text-[10px] font-semibold uppercase tracking-wider ${ch.statusColor}`}>
+                          {ch.status}
+                        </span>
+                      </div>
+                    </div>
                   ))}
+                </div>
+
+                {/* Footer stats */}
+                <div className="mt-3 flex items-center justify-between">
+                  <div className="flex gap-3">
+                    {[
+                      { label: "Verified", count: "8", color: "text-state-verified" },
+                      { label: "Deprecated", count: "1", color: "text-state-deprecated" },
+                      { label: "Alerts", count: "1", color: "text-state-compromised" },
+                    ].map((stat) => (
+                      <div key={stat.label} className="flex items-center gap-1">
+                        <span className={`font-mono text-[10px] font-bold ${stat.color}`}>
+                          {stat.count}
+                        </span>
+                        <span className="font-mono text-[10px] text-text-muted">
+                          {stat.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                   <span className="font-mono text-[10px] text-text-muted">
-                    +7 more
+                    Last updated 2m ago
                   </span>
                 </div>
               </div>
@@ -165,7 +207,7 @@ export function Hero() {
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 bg-state-verified animate-pulse" />
                 <span className="font-mono text-xs font-bold text-text-on-dark tracking-wider uppercase">
-                  3 channels verified
+                  10 channels verified
                 </span>
               </div>
             </motion.div>

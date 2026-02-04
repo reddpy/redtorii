@@ -37,9 +37,9 @@ export const STEPS = [
     number: "01",
     title: "Verify your domain",
     description:
-      "Prove you own your domain with a single DNS TXT record. We confirm your identity so customers never have to guess.",
+      "Add your company domain and we'll confirm you own it. One click, no engineering required.",
     icon: "Globe" as const,
-    detail: "DNS TXT verification",
+    detail: "One-click verification",
   },
   {
     number: "02",
@@ -57,6 +57,14 @@ export const STEPS = [
     icon: "Rocket" as const,
     detail: "Custom domain ready",
   },
+];
+
+export const STEP_CHANNELS = [
+  { value: "+1-800-555-0142", type: "Phone", icon: "phone" as const, label: "Main support line" },
+  { value: "help@acmecorp.com", type: "Email", icon: "email" as const, label: "Support inbox" },
+  { value: "@AcmeCorp", type: "X / Twitter", icon: "x" as const, label: "Official account" },
+  { value: "+1-800-555-0177", type: "Phone", icon: "phone" as const, label: "Sarah Chen — Sales" },
+  { value: "m.rivera@acmecorp.com", type: "Email", icon: "email" as const, label: "Marco Rivera — Compliance" },
 ];
 
 export const CHANNELS = [
