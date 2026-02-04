@@ -1,26 +1,124 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "PP Mondwest";
+  src: url("/fonts/ppmondwest-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: "PP Mondwest", serif;
+
+  /* shadcn semantic tokens */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* Red Torii brand tokens */
+  --color-torii-red: var(--torii-red);
+  --color-torii-red-hover: var(--torii-red-hover);
+  --color-torii-red-light: var(--torii-red-light);
+  --color-surface-primary: var(--surface-primary);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-secondary: var(--surface-dark-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-on-dark: var(--text-on-dark);
+  --color-text-on-red: var(--text-on-red);
+  --color-border-default: var(--border-default);
+  --color-border-subtle: var(--border-subtle);
+  --color-state-verified: var(--state-verified);
+  --color-state-not-found: var(--state-not-found);
+  --color-state-compromised: var(--state-compromised);
+  --color-state-deprecated: var(--state-deprecated);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* shadcn base (customized for Red Torii warm palette) */
+  --radius: 0rem;
+  --background: #FAF7F2;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #C41E3A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F3EDE4;
+  --secondary-foreground: #1A1A1A;
+  --muted: #F3EDE4;
+  --muted-foreground: #6B6B6B;
+  --accent: #F3EDE4;
+  --accent-foreground: #1A1A1A;
+  --destructive: #EF4444;
+  --border: #E5DED3;
+  --input: #E5DED3;
+  --ring: #C41E3A;
+
+  /* Red Torii brand */
+  --torii-red: #C41E3A;
+  --torii-red-hover: #A3182F;
+  --torii-red-light: #FDE8EC;
+  --surface-primary: #FFFFFF;
+  --surface-secondary: #F3EDE4;
+  --surface-dark: #1A1A1A;
+  --surface-dark-secondary: #2A2A2A;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-muted: #9B9B9B;
+  --text-on-dark: #FAF7F2;
+  --text-on-red: #FFFFFF;
+  --border-default: #E5DED3;
+  --border-subtle: #F0EBE3;
+  --state-verified: #22C55E;
+  --state-not-found: #6B7280;
+  --state-compromised: #EF4444;
+  --state-deprecated: #F59E0B;
+}
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* PP Mondwest optical weight compensation */
+.font-display {
+  letter-spacing: -0.02em;
+  -webkit-text-stroke: 0.4px currentColor;
 }
