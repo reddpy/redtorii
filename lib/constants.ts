@@ -89,21 +89,24 @@ export const VERIFICATION_STATES = [
   {
     status: "not-found",
     label: "Not Found",
-    emoji: "\u2717",
-    description: "Not registered with us",
+    emoji: "\u26A0",
+    description: "This channel is not in our records",
+    warning: "Do not engage",
     example: {
       channel: "support@acme-help.net",
       type: "Email",
       company: "Acme Corp",
     },
-    action: "Not in our records. Verify independently before responding.",
-    color: "state-not-found",
+    action:
+      "This channel is not registered. If the company uses Red Torii, all legitimate channels should be listed. Assume this is not official.",
+    color: "state-compromised",
   },
   {
     status: "compromised",
     label: "Compromised",
     emoji: "\u26A0",
-    description: "Do not respond",
+    description: "This channel has been compromised",
+    warning: "Do not respond",
     example: {
       channel: "@AcmeSupport",
       type: "Telegram",
@@ -147,7 +150,7 @@ export const TOOLKIT_FEATURES = [
     description:
       "A drop-in search widget for your existing contact page. Customers verify without leaving your site.",
     icon: "Code2" as const,
-    preview: "<script src=\"redtorii.js\">",
+    preview: '<script src="redtorii.js">',
   },
   {
     title: "Email & SMS Templates",

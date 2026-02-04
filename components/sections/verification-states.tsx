@@ -1,42 +1,45 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  CheckCircle2,
-  XCircle,
-  AlertTriangle,
-  AlertCircle,
-} from "lucide-react";
+import { CheckCircle2, ShieldAlert, AlertTriangle, Clock } from "lucide-react";
 import { AnimatedSection } from "@/components/animated-section";
 import { fadeInUp, staggerContainer } from "@/lib/animation-variants";
 import { VERIFICATION_STATES } from "@/lib/constants";
 
 const iconMap: Record<string, typeof CheckCircle2> = {
   verified: CheckCircle2,
-  "not-found": XCircle,
+  "not-found": ShieldAlert,
   compromised: AlertTriangle,
-  deprecated: AlertCircle,
+  deprecated: Clock,
 };
 
-const colorMap: Record<string, string> = {
-  "state-verified": "text-state-verified",
-  "state-not-found": "text-state-not-found",
-  "state-compromised": "text-state-compromised",
-  "state-deprecated": "text-state-deprecated",
-};
-
-const borderMap: Record<string, string> = {
-  "state-verified": "border-l-state-verified",
-  "state-not-found": "border-l-state-not-found",
-  "state-compromised": "border-l-state-compromised",
-  "state-deprecated": "border-l-state-deprecated",
-};
-
-const bgMap: Record<string, string> = {
-  "state-verified": "bg-state-verified/10",
-  "state-not-found": "bg-state-not-found/10",
-  "state-compromised": "bg-state-compromised/10",
-  "state-deprecated": "bg-state-deprecated/10",
+const styles: Record<
+  string,
+  { border: string; bg: string; text: string; badge: string; accent: string }
+> = {
+  "state-verified": {
+    border: "border-state-verified",
+    bg: "bg-state-verified/5",
+    text: "text-state-verified",
+    badge: "bg-state-verified/10 text-state-verified border-state-verified/20",
+    accent: "bg-state-verified",
+  },
+  "state-compromised": {
+    border: "border-state-compromised",
+    bg: "bg-state-compromised/5",
+    text: "text-state-compromised",
+    badge:
+      "bg-state-compromised/10 text-state-compromised border-state-compromised/20",
+    accent: "bg-state-compromised",
+  },
+  "state-deprecated": {
+    border: "border-state-deprecated",
+    bg: "bg-state-deprecated/5",
+    text: "text-state-deprecated",
+    badge:
+      "bg-state-deprecated/10 text-state-deprecated border-state-deprecated/20",
+    accent: "bg-state-deprecated",
+  },
 };
 
 export function VerificationStates() {
@@ -51,37 +54,45 @@ export function VerificationStates() {
             Verification States
           </p>
           <h2 className="mt-3 tracking-tight text-text-primary">
-            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">Customers search.</span>{" "}
-            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">We answer.</span>
+            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">
+              Customers search.
+            </span>{" "}
+            <br />
+            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">
+              We answer.
+            </span>
           </h2>
           <p className="mt-4 text-lg text-text-secondary">
-            When a customer searches a channel on your trust page, they see one
-            of four statuses — with a clear explanation and action to take.
+            When a customer looks up a channel on your trust page, they get one
+            of four clear verdicts — no ambiguity, no guessing.
           </p>
         </motion.div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {VERIFICATION_STATES.map((state) => {
             const Icon = iconMap[state.status];
+            const s = styles[state.color];
+
             return (
               <motion.div
                 key={state.status}
                 variants={fadeInUp}
-                className={`border-l-4 ${borderMap[state.color]} border border-border-default bg-surface-primary overflow-hidden`}
+                className={`relative border ${s.border} bg-surface-primary overflow-hidden flex flex-col`}
               >
-                {/* Status header */}
-                <div className="flex items-center justify-between p-5 pb-0">
-                  <div className="flex items-center gap-3">
+                {/* Color accent bar */}
+                <div className={`h-1 w-full ${s.accent}`} />
+
+                {/* Status badge + icon */}
+                <div className="p-5 pb-4">
+                  <div className="flex items-center gap-3 mb-3">
                     <div
-                      className={`flex h-9 w-9 items-center justify-center ${bgMap[state.color]}`}
+                      className={`flex h-10 w-10 items-center justify-center rounded-full ${s.badge} border`}
                     >
-                      <Icon
-                        className={`h-4 w-4 ${colorMap[state.color]}`}
-                      />
+                      <Icon className="h-5 w-5" />
                     </div>
                     <div>
                       <h3
-                        className={`font-mono text-sm font-bold uppercase tracking-wider ${colorMap[state.color]}`}
+                        className={`font-mono text-sm font-bold uppercase tracking-wider ${s.text}`}
                       >
                         {state.label}
                       </h3>
@@ -90,29 +101,32 @@ export function VerificationStates() {
                       </p>
                     </div>
                   </div>
-                </div>
 
-                {/* Example lookup */}
-                <div className="mx-5 mt-4 mb-4 border border-border-subtle bg-background p-3">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-text-muted">
-                      {state.example.type}
-                    </span>
-                    <span className="font-mono text-[10px] text-text-muted">
-                      {state.example.company}
-                    </span>
+                  {/* Example channel */}
+                  <div className={`${s.bg} p-3 mb-3`}>
+                    <p className="font-mono text-[10px] font-semibold uppercase tracking-wider text-text-muted mb-1">
+                      {state.example.type} · {state.example.company}
+                    </p>
+                    <p className="font-mono text-sm font-bold text-text-primary">
+                      {state.example.channel}
+                    </p>
                   </div>
-                  <p className="font-mono text-sm font-semibold text-text-primary">
-                    {state.example.channel}
-                  </p>
-                </div>
 
-                {/* Action text */}
-                <div className={`px-5 pb-4`}>
-                  <p className="text-xs leading-relaxed text-text-secondary">
+                  {/* Action */}
+                  <p className="text-xs leading-relaxed text-text-secondary flex-1">
                     {state.action}
                   </p>
                 </div>
+
+                {/* Warning bar for dangerous states */}
+                {"warning" in state &&
+                  (state as { warning?: string }).warning && (
+                    <div className={`${s.accent} px-5 py-2.5 mt-auto`}>
+                      <p className="font-mono text-xs font-bold uppercase tracking-wider text-white">
+                        {(state as { warning?: string }).warning}
+                      </p>
+                    </div>
+                  )}
               </motion.div>
             );
           })}
