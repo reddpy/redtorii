@@ -2,7 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent, useTransform, AnimatePresence } from "framer-motion";
-import { Globe, Layers, Rocket, Search, Upload, Phone, Mail, MessageSquare } from "lucide-react";
+import { Globe, Layers, Rocket, Search, Upload, Phone, Mail, MessageSquare, CheckCircle2 } from "lucide-react";
 import { FaXTwitter, FaTelegram } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
@@ -270,6 +270,7 @@ const mockups = [DomainMockup, DashboardMockup, BrowserMockup];
 /* ─── Main Component ─── */
 export function HowItWorks() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const payoffRef = useRef<HTMLDivElement>(null);
   const [activeStep, setActiveStep] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -291,6 +292,25 @@ export function HowItWorks() {
 
   // Map scroll progress to progress bar height (0% to 100%)
   const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  // Payoff section scroll tracking
+  const { scrollYProgress: payoffProgress } = useScroll({
+    target: payoffRef,
+    offset: ["start 0.7", "end end"],
+  });
+
+  // Scroll-driven transforms for payoff — words "land" from above
+  const payoffBgOpacity = useTransform(payoffProgress, [0, 0.3], [0, 1]);
+  const word1Opacity = useTransform(payoffProgress, [0.12, 0.32], [0, 1]);
+  const word1Y = useTransform(payoffProgress, [0.12, 0.32], [150, 0]);
+  const word1Scale = useTransform(payoffProgress, [0.12, 0.32], [1.15, 1]);
+  const word2Opacity = useTransform(payoffProgress, [0.28, 0.48], [0, 1]);
+  const word2Y = useTransform(payoffProgress, [0.28, 0.48], [150, 0]);
+  const word2Scale = useTransform(payoffProgress, [0.28, 0.48], [1.15, 1]);
+  const subtextOpacity = useTransform(payoffProgress, [0.44, 0.58], [0, 1]);
+  const subtextY = useTransform(payoffProgress, [0.44, 0.58], [40, 0]);
+  const checklistOpacity = useTransform(payoffProgress, [0.54, 0.68], [0, 1]);
+  const checklistY = useTransform(payoffProgress, [0.54, 0.68], [40, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     if (isMobile) return;
@@ -350,6 +370,8 @@ export function HowItWorks() {
                     {STEPS.map((step, i) => {
                       const Icon = stepIconMap[step.icon];
                       const isActive = activeStep === i;
+                      const isCompleted = activeStep > i;
+                      const isHighlighted = isActive || isCompleted;
 
                       return (
                         <motion.div
@@ -364,14 +386,14 @@ export function HowItWorks() {
                           <div className="flex items-start gap-5">
                             <div
                               className={`flex h-14 w-14 shrink-0 items-center justify-center transition-colors duration-300 ${
-                                isActive
+                                isHighlighted
                                   ? "bg-torii-red"
                                   : "bg-surface-secondary"
                               }`}
                             >
                               <span
                                 className={`font-mono text-base font-extrabold transition-colors duration-300 ${
-                                  isActive ? "text-white" : "text-text-muted"
+                                  isHighlighted ? "text-white" : "text-text-muted"
                                 }`}
                               >
                                 {step.number}
@@ -381,14 +403,14 @@ export function HowItWorks() {
                               <div className="flex items-center gap-2.5">
                                 <Icon
                                   className={`h-5 w-5 transition-colors duration-300 ${
-                                    isActive
+                                    isHighlighted
                                       ? "text-torii-red"
                                       : "text-text-muted"
                                   }`}
                                 />
                                 <h3
                                   className={`font-mono text-lg font-bold tracking-tight transition-colors duration-300 ${
-                                    isActive
+                                    isHighlighted
                                       ? "text-text-primary"
                                       : "text-text-muted"
                                   }`}
@@ -420,6 +442,7 @@ export function HowItWorks() {
                     })}
                     </div>
                   </div>
+
                 </div>
 
                 {/* Right: Mockup area */}
@@ -488,7 +511,7 @@ export function HowItWorks() {
                   <Mockup active={true} />
                 </motion.div>
 
-                {/* Connector */}
+                {/* Connector between steps */}
                 {i < STEPS.length - 1 && (
                   <div className="flex justify-center py-3">
                     <div className="relative w-px h-8">
@@ -508,6 +531,61 @@ export function HowItWorks() {
               </div>
             );
           })}
+        </div>
+
+        {/* ─── Payoff: Customers Protected (scroll-driven) ─── */}
+        <div ref={payoffRef} className="relative" style={{ height: "150vh" }}>
+          <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+            {/* Base background */}
+            <div className="absolute inset-0 bg-background" />
+            {/* Gradient that fades in as you scroll */}
+            <motion.div
+              className="absolute inset-0"
+              style={{
+                background: "linear-gradient(to bottom, var(--color-background) 0%, var(--color-torii-red) 35%)",
+                opacity: payoffBgOpacity,
+              }}
+            />
+
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
+              <h3 className="font-display text-5xl sm:text-6xl lg:text-8xl text-white leading-[0.95]">
+                <motion.span
+                  className="inline-block"
+                  style={{ opacity: word1Opacity, y: word1Y, scale: word1Scale }}
+                >
+                  Customers
+                </motion.span>
+                <br />
+                <motion.span
+                  className="inline-block"
+                  style={{ opacity: word2Opacity, y: word2Y, scale: word2Scale }}
+                >
+                  protected.
+                </motion.span>
+              </h3>
+
+              <motion.p
+                style={{ opacity: subtextOpacity, y: subtextY }}
+                className="mt-5 font-mono text-sm sm:text-base text-white/90 max-w-lg mx-auto"
+              >
+                Your trust page is live. Every channel verified. Customers can now confirm it&apos;s really you.
+              </motion.p>
+
+              <motion.div
+                style={{ opacity: checklistOpacity, y: checklistY }}
+                className="mt-10 flex justify-center flex-wrap gap-x-8 gap-y-3"
+              >
+                {["Domain verified", "Channels registered", "Trust page deployed"].map((item) => (
+                  <div key={item} className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-white" />
+                    <span className="font-mono text-xs sm:text-sm text-white/80">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </AnimatedSection>
