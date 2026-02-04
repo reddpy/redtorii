@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -35,16 +36,19 @@ export function Hero() {
           >
             Help customers verify
             <br />
-            <span className="font-mono text-4xl font-extrabold sm:text-5xl lg:text-6xl text-torii-red">it&apos;s really you</span>.
+            <span className="font-mono text-4xl font-extrabold sm:text-5xl lg:text-6xl text-torii-red">
+              it&apos;s really you
+            </span>
+            .
           </motion.h1>
 
           <motion.p
             variants={fadeInUp}
             className="mt-6 max-w-2xl text-lg leading-relaxed text-text-secondary"
           >
-            Protect your customers from impersonation and fraud. Red Torii
-            gives companies the tools to prove authenticity across every
-            channel — so people always know who they&apos;re really talking to.
+            Protect your customers from impersonation and fraud. Red Torii gives
+            companies the tools to prove authenticity across every channel — so
+            people always know who they&apos;re really talking to.
           </motion.p>
 
           <motion.div
@@ -53,10 +57,13 @@ export function Hero() {
           >
             <Button
               size="lg"
+              asChild
               className="bg-torii-red text-text-on-red hover:bg-torii-red-hover px-8 text-base font-mono font-semibold tracking-wide gap-2"
             >
-              Book a Demo
-              <ArrowRight className="h-4 w-4" />
+              <a href="mailto:hello@redtorii.com">
+                Book a Demo
+                <ArrowRight className="h-4 w-4" />
+              </a>
             </Button>
             <Button
               variant="outline"
@@ -66,6 +73,39 @@ export function Hero() {
             >
               <a href="#how-it-works">See how it works</a>
             </Button>
+          </motion.div>
+
+          {/* Social proof logos */}
+          <motion.div
+            variants={fadeInUp}
+            className="mt-12 flex flex-col items-center gap-4"
+          >
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-text-muted">
+              Built by a team from
+            </p>
+            <div className="flex items-center gap-10">
+              <Image
+                src="/logos/cornell.svg"
+                alt="Cornell University"
+                width={120}
+                height={40}
+                className="h-10 w-auto opacity-40 grayscale"
+              />
+              <Image
+                src="/logos/stanford.png"
+                alt="Stanford University"
+                width={40}
+                height={40}
+                className="h-10 w-auto opacity-40 grayscale"
+              />
+              <Image
+                src="/logos/new-relic.svg"
+                alt="New Relic"
+                width={120}
+                height={24}
+                className="h-6 w-auto opacity-40 grayscale"
+              />
+            </div>
           </motion.div>
         </motion.div>
 
@@ -137,17 +177,47 @@ export function Hero() {
               {/* Channel list */}
               <div className="border border-border-default divide-y divide-border-subtle">
                 {[
-                  { value: "+1-800-555-0142", desc: "Main support line", type: "Phone", dot: "bg-state-verified", status: "Verified", statusColor: "text-state-verified" },
-                  { value: "@AcmeCorp", desc: "Official account", type: "X / Twitter", dot: "bg-state-verified", status: "Verified", statusColor: "text-state-verified" },
-                  { value: "j.park@acmecorp.com", desc: "James Park — Account Mgr", type: "Email", dot: "bg-state-verified", status: "Verified", statusColor: "text-state-verified" },
-                  { value: "+1-800-555-0199", desc: "Old fraud desk", type: "Phone", dot: "bg-state-deprecated", status: "Retired", statusColor: "text-state-deprecated" },
+                  {
+                    value: "+1-800-555-0142",
+                    desc: "Main support line",
+                    type: "Phone",
+                    dot: "bg-state-verified",
+                    status: "Verified",
+                    statusColor: "text-state-verified",
+                  },
+                  {
+                    value: "@AcmeCorp",
+                    desc: "Official account",
+                    type: "X / Twitter",
+                    dot: "bg-state-verified",
+                    status: "Verified",
+                    statusColor: "text-state-verified",
+                  },
+                  {
+                    value: "j.park@acmecorp.com",
+                    desc: "James Park — Account Mgr",
+                    type: "Email",
+                    dot: "bg-state-verified",
+                    status: "Verified",
+                    statusColor: "text-state-verified",
+                  },
+                  {
+                    value: "+1-800-555-0199",
+                    desc: "Old fraud desk",
+                    type: "Phone",
+                    dot: "bg-state-deprecated",
+                    status: "Retired",
+                    statusColor: "text-state-deprecated",
+                  },
                 ].map((ch) => (
                   <div
                     key={ch.value}
                     className="flex items-center justify-between px-3 py-2.5"
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className={`h-1.5 w-1.5 rounded-full shrink-0 ${ch.dot}`} />
+                      <div
+                        className={`h-1.5 w-1.5 rounded-full shrink-0 ${ch.dot}`}
+                      />
                       <div className="min-w-0">
                         <span className="font-mono text-xs text-text-primary block truncate">
                           {ch.value}
@@ -161,7 +231,9 @@ export function Hero() {
                       <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider">
                         {ch.type}
                       </span>
-                      <span className={`font-mono text-[10px] font-semibold uppercase tracking-wider ${ch.statusColor}`}>
+                      <span
+                        className={`font-mono text-[10px] font-semibold uppercase tracking-wider ${ch.statusColor}`}
+                      >
                         {ch.status}
                       </span>
                     </div>
@@ -173,12 +245,26 @@ export function Hero() {
               <div className="mt-3 flex items-center justify-between">
                 <div className="flex gap-3">
                   {[
-                    { label: "Verified", count: "8", color: "text-state-verified" },
-                    { label: "Deprecated", count: "1", color: "text-state-deprecated" },
-                    { label: "Alerts", count: "1", color: "text-state-compromised" },
+                    {
+                      label: "Verified",
+                      count: "8",
+                      color: "text-state-verified",
+                    },
+                    {
+                      label: "Deprecated",
+                      count: "1",
+                      color: "text-state-deprecated",
+                    },
+                    {
+                      label: "Alerts",
+                      count: "1",
+                      color: "text-state-compromised",
+                    },
                   ].map((stat) => (
                     <div key={stat.label} className="flex items-center gap-1">
-                      <span className={`font-mono text-[10px] font-bold ${stat.color}`}>
+                      <span
+                        className={`font-mono text-[10px] font-bold ${stat.color}`}
+                      >
                         {stat.count}
                       </span>
                       <span className="font-mono text-[10px] text-text-muted">

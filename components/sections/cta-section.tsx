@@ -36,9 +36,10 @@ export function CTASection() {
         <motion.div variants={fadeInUp} className="mt-8">
           <Button
             size="lg"
+            asChild
             className="bg-white text-torii-red hover:bg-white/90 px-8 text-base font-mono font-bold tracking-wide"
           >
-            Book a Demo
+            <a href="mailto:hello@redtorii.com">Book a Demo</a>
           </Button>
         </motion.div>
       </div>

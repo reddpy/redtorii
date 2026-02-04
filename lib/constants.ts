@@ -202,7 +202,7 @@ export const FAQ_ITEMS = [
   {
     question: "How can I get access?",
     answer:
-      "We're onboarding early partners now. Book a demo and we'll walk you through the platform and discuss how Red Torii fits your use case.",
+      "We're onboarding early partners now. Reach out at hello@redtorii.com and we'll walk you through the platform and discuss how Red Torii fits your use case.",
   },
 ];
 
@@ -211,13 +211,10 @@ export const FOOTER_LINKS = {
     { label: "How It Works", href: "#how-it-works" },
     { label: "Channels", href: "#channels" },
     { label: "Toolkit", href: "#toolkit" },
-    { label: "Pricing", href: "#" },
+    { label: "Early Access", href: "mailto:hello@redtorii.com" },
   ],
   company: [
-    { label: "About", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Contact", href: "mailto:hello@redtorii.com" },
   ],
   legal: [
     { label: "Privacy Policy", href: "#" },

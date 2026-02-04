@@ -49,8 +49,8 @@ export function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <Button className="bg-torii-red text-text-on-red hover:bg-torii-red-hover font-mono font-semibold tracking-wide">
-            Book a Demo
+          <Button asChild className="bg-torii-red text-text-on-red hover:bg-torii-red-hover font-mono font-semibold tracking-wide">
+            <a href="mailto:hello@redtorii.com">Book a Demo</a>
           </Button>
         </div>
 
@@ -82,8 +82,8 @@ export function Navbar() {
                   {link.label}
                 </a>
               ))}
-              <Button className="mt-2 w-full bg-torii-red text-text-on-red hover:bg-torii-red-hover font-mono font-semibold">
-                Book a Demo
+              <Button asChild className="mt-2 w-full bg-torii-red text-text-on-red hover:bg-torii-red-hover font-mono font-semibold">
+                <a href="mailto:hello@redtorii.com">Book a Demo</a>
               </Button>
             </div>
           </motion.div>
