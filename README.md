@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Red Torii
 
-## Getting Started
+**The gate between you and scams.**
 
-First, run the development server:
+Official channel verification for companies.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Problem
+
+Companies tell customers "verify with us" but give them no tool to actually do that. No single page exists where customers can check if a phone number, email, or social handle is really from a company.
+
+- Scammers impersonate companies via calls, emails, Telegram DMs, etc.
+- Customers have no way to verify
+- Companies lose money and trust
+
+---
+
+## Solution
+
+A hosted trust page where companies register their official communication channels. Customers can search and verify any contact claiming to be from them.
+
+```
+Company signs up → Verifies domain → Adds channels → Gets trust page at verify.company.com
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Customer searches a suspicious number → Sees: ✓ Legit or ✗ Not registered or ⚠️ Compromised
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+### MVP
+- Company signup + domain verification (DNS TXT)
+- Dashboard to add/edit channels
+- Public trust page with search
+- Status toggle (active / compromised / deprecated)
+- Custom domain support (CNAME)
 
-To learn more about Next.js, take a look at the following resources:
+### Supported channels
+- Phone numbers
+- Email domains
+- SMS short codes
+- Twitter, Telegram, Discord, WhatsApp, Instagram, LinkedIn, Facebook
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Verification states
+- ✓ Verified — "This is official"
+- ✗ Not Found — "Not registered, verify independently"
+- ⚠️ Compromised — "Do not respond"
+- ⚠️ Deprecated — "No longer in use"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Toolkit
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Not just a page — a fraud communication kit:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Auto-generated QR codes (for statements, cards, signage)
+- Embeddable widget (for existing contact pages)
+- Email/SMS templates (to announce to customers)
+- Scam alerts (warn about active impersonation campaigns)
+- Incident mode (one-click mark multiple channels compromised)
+
+---
+
+## Roadmap
+
+### MVP
+- [ ] Company signup + domain verification
+- [ ] Channel dashboard
+- [ ] Public trust page with search
+- [ ] Status toggle
+- [ ] Custom domain (CNAME)
+
+### Next
+- [ ] QR code generation
+- [ ] Embeddable widget
+- [ ] Analytics (what are people searching?)
+- [ ] Scam alerts
+- [ ] Incident mode
+
+### Later
+- [ ] Smart redirect links (intermediary protection)
+- [ ] API access
+- [ ] Webhooks
+- [ ] Mobile SDK
+- [ ] SSO / audit logs
+- [ ] AI agent API
+
+---
+
+## Notes
+
+- Start with crypto companies (high fraud, will pay, move fast)
+- The product only works if companies promote it — so make promotion easy (toolkit)
+- Custom domain means trust page lives on their domain (verify.chase.com), not ours
+
+---
+
+## Links
+
+- Domain: redtorii.com
