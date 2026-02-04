@@ -159,7 +159,7 @@ function DashboardMockup({ active }: { active: boolean }) {
   );
 }
 
-/* ─── Browser Mockup: Deployed Trust Page (simple "you're live" version) ─── */
+/* ─── Browser Mockup: Deployed Trust Gate (simple "you're live" version) ─── */
 function BrowserMockup({ active }: { active: boolean }) {
   return (
     <div className="relative w-full">
@@ -178,7 +178,7 @@ function BrowserMockup({ active }: { active: boolean }) {
           </div>
         </div>
 
-        {/* Trust page content */}
+        {/* Trust Gate content */}
         <div className="p-5">
           {/* Company header */}
           <div className="flex items-center gap-2.5 mb-4">
@@ -345,7 +345,7 @@ export function HowItWorks() {
             </span>
           </h2>
           <p className="mt-4 text-lg text-text-secondary">
-            No engineers required. Go from signup to a fully deployed trust page
+            No engineers required. Go from signup to a fully deployed Trust Gate
             your customers can use immediately.
           </p>
         </motion.div>
@@ -376,12 +376,11 @@ export function HowItWorks() {
                       return (
                         <motion.div
                           key={step.number}
-                          className={`p-6 cursor-pointer transition-all duration-300 ${
+                          className={`p-6 transition-all duration-300 ${
                             isActive
                               ? "bg-surface-primary border border-border-default"
                               : "border border-transparent"
                           }`}
-                          onClick={() => setActiveStep(i)}
                         >
                           <div className="flex items-start gap-5">
                             <div
@@ -568,14 +567,14 @@ export function HowItWorks() {
                 style={{ opacity: subtextOpacity, y: subtextY }}
                 className="mt-5 font-mono text-sm sm:text-base text-white/90 max-w-lg mx-auto"
               >
-                Your trust page is live. Every channel verified. Customers can now confirm it&apos;s really you.
+                Your Trust Gate is live. Every channel verified. Customers can now confirm it&apos;s really you.
               </motion.p>
 
               <motion.div
                 style={{ opacity: checklistOpacity, y: checklistY }}
                 className="mt-10 flex justify-center flex-wrap gap-x-8 gap-y-3"
               >
-                {["Domain verified", "Channels registered", "Trust page deployed"].map((item) => (
+                {["Domain verified", "Channels registered", "Portal deployed"].map((item) => (
                   <div key={item} className="flex items-center gap-2">
                     <CheckCircle2 className="h-4 w-4 text-white" />
                     <span className="font-mono text-xs sm:text-sm text-white/80">

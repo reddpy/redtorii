@@ -51,7 +51,7 @@ export const STEPS = [
   },
   {
     number: "03",
-    title: "Deploy your trust page",
+    title: "Deploy your Trust Gate",
     description:
       "Go live at verify.yourcompany.com. Customers search any suspicious contact and get an instant answer.",
     icon: "Rocket" as const,
@@ -138,51 +138,6 @@ export const VERIFICATION_STATES = [
   },
 ];
 
-export const TOOLKIT_FEATURES = [
-  {
-    title: "Trust Page",
-    description:
-      "A hosted verification page on your domain (verify.company.com) where customers search any contact and get an instant answer.",
-    icon: "Globe" as const,
-    preview: "verify.yourcompany.com",
-  },
-  {
-    title: "QR Codes",
-    description:
-      "Auto-generated QR codes you can print on statements, business cards, and signage. Customers scan to verify.",
-    icon: "QrCode" as const,
-    preview: "Scan to verify",
-  },
-  {
-    title: "Embeddable Widget",
-    description:
-      "A drop-in search widget for your existing contact page. Customers verify without leaving your site.",
-    icon: "Code2" as const,
-    preview: '<script src="redtorii.js">',
-  },
-  {
-    title: "Email & SMS Templates",
-    description:
-      "Ready-to-send templates announcing your verification page. Customize and blast to your entire customer base.",
-    icon: "FileText" as const,
-    preview: "3 templates included",
-  },
-  {
-    title: "Scam Alerts",
-    description:
-      "Post warnings about active impersonation campaigns. Customers see alerts front and center on your trust page.",
-    icon: "Bell" as const,
-    preview: "Real-time alerts",
-  },
-  {
-    title: "Incident Mode",
-    description:
-      "One click to flag multiple channels as compromised during a security incident. Bulk status change in seconds.",
-    icon: "ShieldOff" as const,
-    preview: "One-click lockdown",
-  },
-];
-
 export const FAQ_ITEMS = [
   {
     question: "What is Red Torii?",
@@ -192,7 +147,7 @@ export const FAQ_ITEMS = [
   {
     question: "How does channel verification work?",
     answer:
-      "Companies verify their domain ownership via a DNS TXT record, then register their official channels in a dashboard. Each channel gets a status (verified, compromised, deprecated) that customers can look up instantly on the company's trust page.",
+      "Companies verify their domain ownership via a DNS TXT record, then register their official channels in a dashboard. Each channel gets a status (verified, compromised, deprecated) that customers can look up instantly on the company's Trust Gate.",
   },
   {
     question: "What channels are supported?",
@@ -202,17 +157,17 @@ export const FAQ_ITEMS = [
   {
     question: "How do customers verify a channel?",
     answer:
-      "Customers visit the company's trust page (which lives on the company's own domain, like verify.company.com) and search for the suspicious contact. They instantly see whether it's verified, not found, compromised, or deprecated — with clear guidance on what to do.",
+      "Customers visit the company's Trust Gate (which lives on the company's own domain, like verify.company.com) and search for the suspicious contact. They instantly see whether it's verified, not found, compromised, or deprecated — with clear guidance on what to do.",
   },
   {
     question: "Can I use my own domain?",
     answer:
-      "Yes. Red Torii supports custom domains via CNAME records. Your trust page can live at verify.yourcompany.com instead of on our domain, building trust because customers see your domain, not ours.",
+      "Yes. Red Torii supports custom domains via CNAME records. Your Trust Gate can live at verify.yourcompany.com instead of on our domain, building trust because customers see your domain, not ours.",
   },
   {
     question: "What happens if a channel is compromised?",
     answer:
-      "You can instantly flag individual channels or activate Incident Mode to mark multiple channels as compromised with one click. Customers searching those channels will see a clear warning to not respond.",
+      "You can instantly flag individual channels or activate Incident Lockdown to mark multiple channels as compromised with one click. Customers searching those channels will see a clear warning to not respond.",
   },
   {
     question: "Who is Red Torii built for?",

@@ -69,7 +69,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Trust page mockup */}
+          {/* Trust Gate mockup */}
           <motion.div
             initial="hidden"
             animate="visible"
@@ -102,7 +102,7 @@ export function Hero() {
                 </span>
               </div>
 
-              {/* Trust page content */}
+              {/* Trust Gate content */}
               <div className="p-5">
                 {/* Company header */}
                 <div className="flex items-center justify-between mb-4">

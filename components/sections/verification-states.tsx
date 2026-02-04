@@ -63,7 +63,7 @@ export function VerificationStates() {
             </span>
           </h2>
           <p className="mt-4 text-lg text-text-secondary">
-            When a customer looks up a channel on your trust page, they get one
+            When a customer looks up a channel on your Trust Gate, they get one
             of four clear verdicts — no ambiguity, no guessing.
           </p>
         </motion.div>
