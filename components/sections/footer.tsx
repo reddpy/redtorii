@@ -31,7 +31,7 @@ export function Footer() {
           style={{ x: brandX, opacity: brandOpacity }}
           className="whitespace-nowrap pb-8"
         >
-          <span className="font-mono text-[12rem] sm:text-[16rem] lg:text-[20rem] font-extrabold leading-none text-white tracking-tighter">
+          <span className="font-display text-[12rem] sm:text-[16rem] lg:text-[20rem] leading-none text-white tracking-tighter">
             RED TORII
           </span>
         </motion.div>

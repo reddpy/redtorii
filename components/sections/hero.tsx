@@ -31,21 +31,21 @@ export function Hero() {
 
             <motion.h1
               variants={fadeInUp}
-              className="font-mono text-4xl font-extrabold leading-[1.1] tracking-tight text-text-primary sm:text-5xl lg:text-6xl"
+              className="font-display text-5xl leading-[1.1] tracking-tight text-text-primary sm:text-6xl lg:text-7xl"
             >
               Your gateway
               <br />
               to{" "}
-              <span className="text-torii-red">security</span>.
+              <span className="font-mono text-4xl font-extrabold sm:text-5xl lg:text-6xl text-torii-red">security</span>.
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
               className="mt-6 max-w-lg text-lg leading-relaxed text-text-secondary"
             >
-              A fraud communication toolkit — trust page, QR codes, widgets,
-              templates, and app integrations. Everything you need to help
-              customers verify it&apos;s really you.
+              Protect your customers from impersonation and fraud. Red Torii
+              gives companies the tools to prove authenticity across every
+              channel — so people always know who they&apos;re really talking to.
             </motion.p>
 
             <motion.div

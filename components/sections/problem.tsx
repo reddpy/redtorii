@@ -14,6 +14,26 @@ const iconMap = {
   TrendingDown,
 };
 
+function HighlightedText({ text }: { text: string }) {
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        part.startsWith("**") && part.endsWith("**") ? (
+          <span
+            key={i}
+            className="font-semibold text-text-primary bg-torii-red-light/60 px-0.5"
+          >
+            {part.slice(2, -2)}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
+
 export function Problem() {
   return (
     <AnimatedSection
@@ -27,9 +47,15 @@ export function Problem() {
           <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
             The Problem
           </p>
-          <h2 className="mt-3 font-mono text-3xl font-extrabold tracking-tight text-text-primary sm:text-4xl lg:text-5xl">
-            Trust is broken on every channel
+          <h2 className="mt-3 tracking-tight text-text-primary">
+            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">Trust is broken</span>
+            <br />
+            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">on every channel</span>
           </h2>
+          <p className="mt-4 max-w-2xl text-lg text-text-secondary">
+            Scammers impersonate companies across every channel. Customers have
+            no way to check what&apos;s real. The cost is measured in billions.
+          </p>
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-3">
@@ -39,14 +65,20 @@ export function Problem() {
               <motion.div key={card.title} variants={fadeInUp}>
                 <Card className="h-full border-border-default bg-surface-primary shadow-none hover:border-torii-red/20 transition-colors">
                   <CardContent className="p-6 md:p-8">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center bg-torii-red-light">
+                    <div className="mb-5 flex h-12 w-12 items-center justify-center bg-torii-red-light">
                       <Icon className="h-6 w-6 text-torii-red" />
                     </div>
-                    <h3 className="font-mono text-base font-bold tracking-tight text-text-primary">
+                    <p className="font-display text-5xl tracking-tight text-torii-red lg:text-6xl">
+                      {card.stat}
+                    </p>
+                    <p className="mt-1 font-mono text-xs font-medium uppercase tracking-widest text-text-muted">
+                      {card.statLabel}
+                    </p>
+                    <h3 className="mt-4 font-mono text-base font-bold tracking-tight text-text-primary">
                       {card.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-text-secondary">
-                      {card.description}
+                      <HighlightedText text={card.description} />
                     </p>
                   </CardContent>
                 </Card>
@@ -54,6 +86,16 @@ export function Problem() {
             );
           })}
         </div>
+
+        <motion.div
+          variants={fadeInUp}
+          className="mt-6 flex flex-wrap justify-end gap-x-4 gap-y-1 text-xs text-text-muted"
+        >
+          <span>Sources:</span>
+          <a href="https://www.pewresearch.org/internet/2025/07/31/online-scams-and-attacks-in-america-today/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-text-secondary transition-colors">Pew Research 2025</a>
+          <a href="https://www.ftc.gov/news-events/news/press-releases/2025/03/new-ftc-data-show-big-jump-reported-losses-fraud-125-billion-2024" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-text-secondary transition-colors">FTC Sentinel 2025</a>
+          <a href="https://www.jec.senate.gov/public/_cache/files/d229cc6d-0dc5-4828-9f92-5de8ffffa326/july-2025-issue-brief-scams-1.pdf" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-text-secondary transition-colors">JEC 2025</a>
+        </motion.div>
       </div>
     </AnimatedSection>
   );

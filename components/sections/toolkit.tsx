@@ -1,14 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Globe,
-  QrCode,
-  Code2,
-  FileText,
-  Bell,
-  ShieldOff,
-} from "lucide-react";
+import { Globe, QrCode, Code2, FileText, Bell, ShieldOff } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { FloatingCrosses } from "@/components/background-grid";
 import { AnimatedSection } from "@/components/animated-section";
@@ -40,12 +33,14 @@ export function Toolkit() {
           <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
             Toolkit
           </p>
-          <h2 className="mt-3 font-mono text-3xl font-extrabold tracking-tight text-text-primary sm:text-4xl lg:text-5xl">
-            The complete anti-impersonation stack
+          <h2 className="mt-3 tracking-tight text-text-primary">
+            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">The complete</span>
+            <br />
+            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">anti-impersonation stack</span>
           </h2>
           <p className="mt-4 text-lg text-text-secondary">
-            Not just a page. A full fraud communication kit — ready to deploy, no
-            engineering required.
+            Not just a page. A full fraud communication kit — ready to deploy,
+            no engineering required.
           </p>
         </motion.div>
 

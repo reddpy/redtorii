@@ -26,8 +26,10 @@ export function HowItWorks() {
           <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
             How It Works
           </p>
-          <h2 className="mt-3 font-mono text-3xl font-extrabold tracking-tight text-text-primary sm:text-4xl lg:text-5xl">
-            Live in three steps
+          <h2 className="mt-3 tracking-tight text-text-primary">
+            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">Live in</span>
+            <br />
+            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">three steps</span>
           </h2>
           <p className="mt-4 text-lg text-text-secondary">
             No engineers required. Go from signup to a fully deployed trust page

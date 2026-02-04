@@ -23,14 +23,13 @@ export function CTASection() {
         </motion.p>
         <motion.h2
           variants={fadeInUp}
-          className="font-mono text-3xl font-extrabold tracking-tight text-text-on-red sm:text-4xl lg:text-5xl"
+          className="tracking-tight text-text-on-red"
         >
-          Ready to protect your customers?
+          <span className="font-display text-4xl sm:text-5xl lg:text-6xl">Ready to protect</span>
+          <br />
+          <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">your customers?</span>
         </motion.h2>
-        <motion.p
-          variants={fadeInUp}
-          className="mt-4 text-lg text-white/80"
-        >
+        <motion.p variants={fadeInUp} className="mt-4 text-lg text-white/80">
           Deploy the anti-impersonation stack. Help customers verify it&apos;s
           really you.
         </motion.p>

@@ -50,8 +50,9 @@ export function VerificationStates() {
           <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
             Verification States
           </p>
-          <h2 className="mt-3 font-mono text-3xl font-extrabold tracking-tight text-text-primary sm:text-4xl lg:text-5xl">
-            Customers search. We answer.
+          <h2 className="mt-3 tracking-tight text-text-primary">
+            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">Customers search.</span>{" "}
+            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">We answer.</span>
           </h2>
           <p className="mt-4 text-lg text-text-secondary">
             When a customer searches a channel on your trust page, they see one

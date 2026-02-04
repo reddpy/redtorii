@@ -7,21 +7,27 @@ export const NAV_LINKS = [
 
 export const PROBLEM_CARDS = [
   {
-    title: "Impersonation is rampant",
+    title: "Fraud is accelerating",
+    stat: "$16.6B",
+    statLabel: "lost to digital scams in 2024",
     description:
-      'Scammers impersonate companies via phone calls, emails, Telegram DMs, and more. There\'s no barrier to faking a company\'s identity.',
+      "Up **370% in five years**. Imposter scams are the **#1 category**, and AI-powered deepfakes surged **700%** in fintech alone.",
     icon: "ShieldAlert" as const,
   },
   {
-    title: "No way to verify",
+    title: "Everyone is a target",
+    stat: "73%",
+    statLabel: "of Americans have been scammed",
     description:
-      'Companies tell customers to "verify with us" but give them no tool to actually do that. No single page exists where customers can check.',
+      "**68% get scam calls weekly**. Victims lose **$19,000 on average**. Yet there's still no standard way for customers to verify who they're talking to.",
     icon: "HelpCircle" as const,
   },
   {
-    title: "Trust and money lost",
+    title: "A global crisis",
+    stat: "$1T",
+    statLabel: "stolen worldwide in 2024",
     description:
-      "Customers lose money to scammers. Companies lose trust and reputation. Everyone pays the price for a missing verification layer.",
+      "More than the **global drug trade**. **79% of Americans** call it a major national problem. **68%** say AI will make it worse. No one has built the verification layer.",
     icon: "TrendingDown" as const,
   },
 ];
@@ -170,7 +176,7 @@ export const FAQ_ITEMS = [
   {
     question: "What is Red Torii?",
     answer:
-      "Red Torii is the anti-impersonation stack for companies. It's a fraud communication toolkit that includes a hosted trust page, QR codes, embeddable widgets, customer templates, and incident management — everything you need to help customers verify it's really you.",
+      "Red Torii is the anti-impersonation stack for companies. It gives businesses the tools to protect their customers from fraud and impersonation across every communication channel — so people always know who they're really talking to.",
   },
   {
     question: "How does channel verification work?",
