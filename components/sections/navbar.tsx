@@ -40,16 +40,17 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="font-mono text-sm font-medium text-text-secondary transition-colors hover:text-text-primary tracking-wide"
+              className="group relative font-mono text-sm font-medium text-text-secondary transition-colors hover:text-text-primary tracking-wide"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 h-px w-0 bg-torii-red transition-all duration-300 ease-out group-hover:w-full" />
             </a>
           ))}
         </div>
 
         <div className="hidden md:block">
           <Button className="bg-torii-red text-text-on-red hover:bg-torii-red-hover font-mono font-semibold tracking-wide">
-            Get Started
+            Book a Demo
           </Button>
         </div>
 
@@ -82,7 +83,7 @@ export function Navbar() {
                 </a>
               ))}
               <Button className="mt-2 w-full bg-torii-red text-text-on-red hover:bg-torii-red-hover font-mono font-semibold">
-                Get Started
+                Book a Demo
               </Button>
             </div>
           </motion.div>

@@ -74,10 +74,9 @@ export function VerificationStates() {
             const s = styles[state.color];
 
             return (
-              <motion.div
+              <div
                 key={state.status}
-                variants={fadeInUp}
-                className={`relative border ${s.border} bg-surface-primary overflow-hidden flex flex-col`}
+                className={`relative border ${s.border} bg-surface-primary overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
               >
                 {/* Color accent bar */}
                 <div className={`h-1 w-full ${s.accent}`} />
@@ -127,7 +126,7 @@ export function VerificationStates() {
                       </p>
                     </div>
                   )}
-              </motion.div>
+              </div>
             );
           })}
         </div>

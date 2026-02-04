@@ -14,7 +14,11 @@ export function Footer() {
   });
 
   const brandX = useTransform(scrollYProgress, [0, 1], ["10%", "-5%"]);
-  const brandOpacity = useTransform(scrollYProgress, [0, 0.3, 1], [0, 0.06, 0.06]);
+  const brandOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 1],
+    [0, 0.06, 0.06],
+  );
 
   return (
     <motion.footer
@@ -32,7 +36,7 @@ export function Footer() {
           className="whitespace-nowrap pb-8"
         >
           <span className="font-display text-[12rem] sm:text-[16rem] lg:text-[20rem] leading-none text-white tracking-tighter">
-            RED TORII
+            Red Torii
           </span>
         </motion.div>
       </div>

@@ -473,7 +473,7 @@ function FeatureCard({
   visual: () => React.JSX.Element;
 }) {
   return (
-    <Card className="h-full border-border-default bg-surface-primary shadow-none hover:border-torii-red/20 transition-colors group">
+    <Card className="h-full border-border-default bg-surface-primary shadow-none hover:border-torii-red/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
       <CardContent className="p-0 h-full flex flex-col">
         <div className="p-4 pb-0">
           <Visual />

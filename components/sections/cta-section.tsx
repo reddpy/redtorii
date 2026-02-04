@@ -19,7 +19,7 @@ export function CTASection() {
           variants={fadeInUp}
           className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-white/60 mb-4"
         >
-          Get Started
+          Get in Touch
         </motion.p>
         <motion.h2
           variants={fadeInUp}
@@ -30,15 +30,15 @@ export function CTASection() {
           <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">your customers?</span>
         </motion.h2>
         <motion.p variants={fadeInUp} className="mt-4 text-lg text-white/80">
-          Deploy the anti-impersonation stack. Help customers verify it&apos;s
-          really you.
+          We&apos;re onboarding early partners now. Book a demo to see the
+          anti-impersonation stack in action.
         </motion.p>
         <motion.div variants={fadeInUp} className="mt-8">
           <Button
             size="lg"
             className="bg-white text-torii-red hover:bg-white/90 px-8 text-base font-mono font-bold tracking-wide"
           >
-            Get Started for Free
+            Book a Demo
           </Button>
         </motion.div>
       </div>

@@ -60,11 +60,36 @@ export const STEPS = [
 ];
 
 export const STEP_CHANNELS = [
-  { value: "+1-800-555-0142", type: "Phone", icon: "phone" as const, label: "Main support line" },
-  { value: "help@acmecorp.com", type: "Email", icon: "email" as const, label: "Support inbox" },
-  { value: "@AcmeCorp", type: "X / Twitter", icon: "x" as const, label: "Official account" },
-  { value: "+1-800-555-0177", type: "Phone", icon: "phone" as const, label: "Sarah Chen — Sales" },
-  { value: "m.rivera@acmecorp.com", type: "Email", icon: "email" as const, label: "Marco Rivera — Compliance" },
+  {
+    value: "+1-800-555-0142",
+    type: "Phone",
+    icon: "phone" as const,
+    label: "Main support line",
+  },
+  {
+    value: "help@acmecorp.com",
+    type: "Email",
+    icon: "email" as const,
+    label: "Support inbox",
+  },
+  {
+    value: "@AcmeCorp",
+    type: "X / Twitter",
+    icon: "x" as const,
+    label: "Official account",
+  },
+  {
+    value: "+1-800-555-0177",
+    type: "Phone",
+    icon: "phone" as const,
+    label: "Sarah Chen — Sales",
+  },
+  {
+    value: "m.rivera@acmecorp.com",
+    type: "Email",
+    icon: "email" as const,
+    label: "Marco Rivera — Compliance",
+  },
 ];
 
 export const CHANNELS = [
@@ -175,9 +200,9 @@ export const FAQ_ITEMS = [
       "Any company that communicates with customers and wants to protect them from impersonation scams. We're starting with crypto and fintech companies where fraud is most prevalent and the willingness to pay is highest.",
   },
   {
-    question: "Is Red Torii free?",
+    question: "How can I get access?",
     answer:
-      "We'll share pricing details soon. Reach out to learn more about early access and pilot programs.",
+      "We're onboarding early partners now. Book a demo and we'll walk you through the platform and discuss how Red Torii fits your use case.",
   },
 ];
 

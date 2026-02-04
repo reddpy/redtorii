@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useInView, useSpring, useMotionValue } from "framer-motion";
 import { ShieldAlert, HelpCircle, TrendingDown } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { FloatingCrosses } from "@/components/background-grid";
@@ -13,6 +14,46 @@ const iconMap = {
   HelpCircle,
   TrendingDown,
 };
+
+function AnimatedStat({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+
+  // Extract number and prefix/suffix (e.g., "$16.6B" → "$", 16.6, "B")
+  const match = value.match(/^([^0-9]*)([0-9.]+)(.*)$/);
+  const prefix = match?.[1] ?? "";
+  const num = parseFloat(match?.[2] ?? "0");
+  const suffix = match?.[3] ?? "";
+  const hasDecimal = match?.[2]?.includes(".") ?? false;
+
+  const motionVal = useMotionValue(0);
+  const spring = useSpring(motionVal, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    if (isInView) motionVal.set(num);
+  }, [isInView, motionVal, num]);
+
+  useEffect(() => {
+    const unsubscribe = spring.on("change", (v) => {
+      if (ref.current) {
+        const done = Math.abs(v - num) < 0.05;
+        if (done) {
+          // Snap to final clean value
+          ref.current.textContent =
+            prefix + (hasDecimal ? num.toFixed(1) : num.toString()) + suffix;
+        } else if (hasDecimal || num < 10) {
+          // Show one decimal during animation for visibility
+          ref.current.textContent = prefix + v.toFixed(1) + suffix;
+        } else {
+          ref.current.textContent = prefix + Math.round(v).toString() + suffix;
+        }
+      }
+    });
+    return unsubscribe;
+  }, [spring, prefix, suffix, hasDecimal, num]);
+
+  return <span ref={ref}>{value}</span>;
+}
 
 function HighlightedText({ text }: { text: string }) {
   const parts = text.split(/(\*\*.*?\*\*)/g);
@@ -63,13 +104,13 @@ export function Problem() {
             const Icon = iconMap[card.icon];
             return (
               <motion.div key={card.title} variants={fadeInUp}>
-                <Card className="h-full border-border-default bg-surface-primary shadow-none hover:border-torii-red/20 transition-colors">
+                <Card className="h-full border-border-default bg-surface-primary shadow-none hover:border-torii-red/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                   <CardContent className="p-6 md:p-8">
                     <div className="mb-5 flex h-12 w-12 items-center justify-center bg-torii-red-light">
                       <Icon className="h-6 w-6 text-torii-red" />
                     </div>
                     <p className="font-display text-5xl tracking-tight text-torii-red lg:text-6xl">
-                      {card.stat}
+                      <AnimatedStat value={card.stat} />
                     </p>
                     <p className="mt-1 font-mono text-xs font-medium uppercase tracking-widest text-text-muted">
                       {card.statLabel}

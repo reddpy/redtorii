@@ -64,6 +64,7 @@ export function BackgroundGrid({
             left: `${cell.x}%`,
             top: `${cell.y}%`,
           }}
+          initial={{ opacity: 0 }}
           animate={{
             opacity: [0, opacity, opacity, 0],
           }}
@@ -116,6 +117,7 @@ export function FloatingCrosses({
             top: `${cross.y}%`,
             fontSize: `${cross.size}px`,
           }}
+          initial={{ opacity: 0 }}
           animate={{
             opacity: [0, 1, 1, 0],
             y: [0, -20],
