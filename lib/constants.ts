@@ -1,4 +1,5 @@
 export const NAV_LINKS = [
+  { label: "Use Cases", href: "#use-cases" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Channels", href: "#channels" },
   { label: "Toolkit", href: "#toolkit" },
@@ -197,13 +198,110 @@ export const FAQ_ITEMS = [
   {
     question: "Who is Red Torii built for?",
     answer:
-      "Any company that communicates with customers and wants to protect them from impersonation scams. We're starting with crypto and fintech companies where fraud is most prevalent and the willingness to pay is highest.",
+      "Any company doing outbound communication — recruiting, healthcare, sales, financial services, customer success, and more. If your team reaches out to people via phone, email, SMS, or social channels, Red Torii helps recipients verify your legitimacy instantly.",
   },
   {
     question: "How can I get access?",
     answer:
       "We're onboarding early partners now. Reach out at hello@redtorii.com and we'll walk you through the platform and discuss how Red Torii fits your use case.",
   },
+];
+
+export const OUTBOUND_INDUSTRIES = [
+  {
+    id: "financial",
+    name: "Financial Services",
+    shortName: "Finance",
+    icon: "landmark" as const,
+    color: "#06B6D4",
+    sender: {
+      name: "First National",
+      role: "Fraud Prevention",
+      company: "First National Bank",
+      avatar: "FN",
+    },
+    message: {
+      preview: "We detected unusual activity on your account. Please verify...",
+      channel: "SMS",
+      channelIcon: "sms" as const,
+      channelValue: "32145 (Short Code)",
+    },
+    channels: ["Phone", "SMS", "Email"],
+    stat: "89%",
+    statLabel: "of bank fraud victims couldn't tell the scam from a real message",
+  },
+  {
+    id: "healthcare",
+    name: "Healthcare",
+    shortName: "Healthcare",
+    icon: "heart-pulse" as const,
+    color: "#EC4899",
+    sender: {
+      name: "Dr. Park's Office",
+      role: "Patient Coordinator",
+      company: "Valley Medical",
+      avatar: "VM",
+    },
+    message: {
+      preview: "This is Valley Medical calling to confirm your appointment...",
+      channel: "Phone Call",
+      channelIcon: "phone" as const,
+      channelValue: "+1 (555) 234-5678",
+    },
+    channels: ["Phone", "SMS", "Email"],
+    stat: "68%",
+    statLabel: "of patients screen calls from numbers they don't recognize",
+  },
+  {
+    id: "recruiting",
+    name: "Recruiting",
+    shortName: "Recruiting",
+    icon: "briefcase" as const,
+    color: "#8B5CF6",
+    sender: {
+      name: "Sarah Chen",
+      role: "Senior Recruiter",
+      company: "Acme Talent",
+      avatar: "SC",
+    },
+    message: {
+      preview: "Hi! I'm reaching out about a Senior Engineer role at Acme...",
+      channel: "LinkedIn DM",
+      channelIcon: "linkedin" as const,
+      channelValue: "@SarahChen-Acme",
+    },
+    channels: ["LinkedIn", "Email", "Phone"],
+    stat: "72%",
+    statLabel: "of candidates ignore recruiter messages they can't verify",
+  },
+  {
+    id: "sales",
+    name: "Sales",
+    shortName: "Sales",
+    icon: "trending-up" as const,
+    color: "#F59E0B",
+    sender: {
+      name: "James Rivera",
+      role: "Account Executive",
+      company: "CloudSync",
+      avatar: "JR",
+    },
+    message: {
+      preview: "Following up on our demo last week. Ready to discuss next steps?",
+      channel: "Email",
+      channelIcon: "email" as const,
+      channelValue: "james.r@cloudsync.com",
+    },
+    channels: ["Email", "Phone", "LinkedIn"],
+    stat: "45%",
+    statLabel: "of cold outreach goes unanswered due to authenticity doubts",
+  },
+];
+
+export const TRUST_FLOW_STEPS = [
+  { label: "Outbound sent", icon: "send" },
+  { label: "Passes through Red Torii", icon: "shield-check" },
+  { label: "Recipient verifies", icon: "check-circle" },
 ];
 
 export const FOOTER_LINKS = {
