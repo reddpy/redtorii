@@ -10,7 +10,17 @@ import {
   Bell,
   ShieldOff,
   Search,
+  Link,
+  MousePointer2,
+  CheckCircle2,
 } from "lucide-react";
+import {
+  FaXTwitter,
+  FaTelegram,
+  FaDiscord,
+  FaWhatsapp,
+  FaLinkedin,
+} from "react-icons/fa6";
 import { Card, CardContent } from "@/components/ui/card";
 import { FloatingCrosses } from "@/components/background-grid";
 import { AnimatedSection } from "@/components/animated-section";
@@ -460,23 +470,103 @@ function IncidentModeVisual() {
   );
 }
 
+function ProtectedLinksVisual() {
+  return (
+    <div className="border border-border-default bg-background overflow-hidden">
+      <div className="flex items-center gap-1.5 border-b border-border-default bg-surface-secondary px-2.5 py-1.5">
+        <div className="flex gap-1">
+          <div className="h-1.5 w-1.5 rounded-full bg-text-muted/30" />
+          <div className="h-1.5 w-1.5 rounded-full bg-text-muted/30" />
+          <div className="h-1.5 w-1.5 rounded-full bg-text-muted/30" />
+        </div>
+        <div className="ml-1.5 flex-1 bg-background border border-border-subtle px-2 py-0.5">
+          <span className="font-mono text-[8px] text-text-muted">
+            rt.link/acme/support
+          </span>
+        </div>
+      </div>
+      {/* Flow visualization */}
+      <div className="p-3">
+        <div className="flex items-center justify-between gap-2">
+          {/* Click - Mouse cursor */}
+          <div className="flex flex-col items-center gap-1">
+            <div className="h-9 w-9 rounded bg-torii-red/10 border border-torii-red/20 flex items-center justify-center">
+              <MousePointer2 className="h-4 w-4 text-torii-red" />
+            </div>
+            <span className="font-mono text-[6px] text-text-muted">Click</span>
+          </div>
+          {/* Arrow */}
+          <div className="flex-1 h-px bg-gradient-to-r from-torii-red/40 to-torii-red relative">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[3px] border-t-transparent border-b-[3px] border-b-transparent border-l-[5px] border-l-torii-red" />
+          </div>
+          {/* Checkpoint - Torii Gate */}
+          <div className="flex flex-col items-center gap-1">
+            <div className="h-11 w-14 rounded bg-surface-dark border-2 border-torii-red/40 flex flex-col items-center justify-center">
+              {/* Simple Torii Gate SVG */}
+              <svg viewBox="0 0 24 20" className="h-5 w-5" fill="none">
+                <path
+                  d="M2 4h20M4 4v14M20 4v14M1 2h22M6 8h12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  className="text-torii-red"
+                />
+              </svg>
+              <span className="font-mono text-[5px] text-white/60 mt-0.5">Verified</span>
+            </div>
+            <span className="font-mono text-[6px] text-torii-red font-medium">Gate</span>
+          </div>
+          {/* Arrow */}
+          <div className="flex-1 h-px bg-gradient-to-r from-state-verified to-state-verified/40 relative">
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[3px] border-t-transparent border-b-[3px] border-b-transparent border-l-[5px] border-l-state-verified/40" />
+          </div>
+          {/* Destination - Big checkmark */}
+          <div className="flex flex-col items-center gap-1">
+            <div className="h-9 w-9 rounded bg-state-verified/10 border border-state-verified/30 flex items-center justify-center">
+              <CheckCircle2 className="h-5 w-5 text-state-verified" />
+            </div>
+            <span className="font-mono text-[6px] text-state-verified">Safe</span>
+          </div>
+        </div>
+      </div>
+      {/* Bottom info */}
+      <div className="border-t border-border-default px-2.5 py-2 bg-surface-secondary">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-1.5">
+            <div className="h-1.5 w-1.5 bg-state-verified rounded-full" />
+            <span className="font-mono text-[7px] text-text-secondary">
+              discord.gg/acmecorp
+            </span>
+          </div>
+          <span className="font-mono text-[6px] text-state-verified font-semibold">
+            Redirected
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── Feature card component ─── */
 function FeatureCard({
   icon: Icon,
   title,
   description,
   visual: Visual,
+  visualFooter,
 }: {
   icon: typeof Globe;
   title: string;
   description: string;
   visual: () => React.JSX.Element;
+  visualFooter?: React.ReactNode;
 }) {
   return (
     <Card className="h-full border-border-default bg-surface-primary shadow-none hover:border-torii-red/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group">
       <CardContent className="p-0 h-full flex flex-col">
         <div className="p-4 pb-0">
           <Visual />
+          {visualFooter}
         </div>
         <div className="p-4 pt-3 mt-auto">
           <div className="flex items-center gap-2.5 mb-1.5">
@@ -514,16 +604,14 @@ function SubsectionLabel({ label, number }: { label: string; number: string }) {
 /* ─── Main component ─── */
 export function Toolkit() {
   return (
-    <AnimatedSection
-      variants={staggerContainer}
-      className="relative bg-surface-secondary py-20 lg:py-32"
-    >
-      <FloatingCrosses count={12} color="text-torii-red/[0.05]" />
-
-      <div
-        id="toolkit"
-        className="relative mx-auto max-w-7xl px-6 lg:px-8 scroll-mt-24"
+    <section id="toolkit" className="scroll-mt-20">
+      <AnimatedSection
+        variants={staggerContainer}
+        className="relative bg-surface-secondary py-20 lg:pb-32"
       >
+        <FloatingCrosses count={12} color="text-torii-red/[0.05]" />
+
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section header */}
         <motion.div variants={fadeInUp} className="mb-14 lg:mb-20 max-w-2xl">
           <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
@@ -546,7 +634,7 @@ export function Toolkit() {
 
         {/* ── Core Platform ── */}
         <SubsectionLabel number="01" label="Core Platform" />
-        <div className="grid gap-5 md:grid-cols-2 mb-12 lg:mb-16">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 mb-12 lg:mb-16">
           <motion.div variants={fadeInUp} className="h-full">
             <FeatureCard
               icon={Globe}
@@ -561,6 +649,27 @@ export function Toolkit() {
               title="Threat Intelligence"
               description="Live dashboard tracking every customer lookup. Surface unknown channels, detect impersonation patterns, and catch fraud campaigns before they scale."
               visual={AnalyticsVisual}
+            />
+          </motion.div>
+          <motion.div variants={fadeInUp} className="h-full md:col-span-2 lg:col-span-1">
+            <FeatureCard
+              icon={Link}
+              title="Protected Links"
+              description="Every outbound link passes through a verification checkpoint before redirecting. Embed rt.link URLs anywhere — websites, emails, social bios."
+              visual={ProtectedLinksVisual}
+              visualFooter={
+                <div className="mt-3 flex items-center justify-center gap-3 py-2 border-t border-border-subtle">
+                  <span className="font-mono text-[10px] text-text-muted uppercase tracking-wider">Works with</span>
+                  <div className="flex items-center gap-2.5">
+                    <FaXTwitter className="h-4 w-4 text-text-muted" />
+                    <FaLinkedin className="h-4 w-4 text-text-muted" />
+                    <FaDiscord className="h-4 w-4 text-text-muted" />
+                    <FaTelegram className="h-4 w-4 text-text-muted" />
+                    <FaWhatsapp className="h-4 w-4 text-text-muted" />
+                    <span className="font-mono text-[10px] text-text-muted">+more</span>
+                  </div>
+                </div>
+              }
             />
           </motion.div>
         </div>
@@ -614,7 +723,8 @@ export function Toolkit() {
             />
           </motion.div>
         </div>
-      </div>
-    </AnimatedSection>
+        </div>
+      </AnimatedSection>
+    </section>
   );
 }

@@ -1,7 +1,6 @@
 export const NAV_LINKS = [
   { label: "Use Cases", href: "#use-cases" },
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Channels", href: "#channels" },
   { label: "Toolkit", href: "#toolkit" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -304,10 +303,36 @@ export const TRUST_FLOW_STEPS = [
   { label: "Recipient verifies", icon: "check-circle" },
 ];
 
+export const LINK_FLOW_STEPS = [
+  {
+    id: "code",
+    label: "Embed",
+    caption: "Add to your site",
+  },
+  {
+    id: "click",
+    label: "Click",
+    caption: "Customer clicks",
+  },
+  {
+    id: "verify",
+    label: "Verify",
+    caption: "Security checkpoint",
+  },
+  {
+    id: "redirect",
+    label: "Redirect",
+    caption: "Safe to engage",
+  },
+];
+
+export const CODE_SNIPPET = `<a href="https://rt.link/acme/sales">
+  Contact Sales
+</a>`;
+
 export const FOOTER_LINKS = {
   product: [
     { label: "How It Works", href: "#how-it-works" },
-    { label: "Channels", href: "#channels" },
     { label: "Toolkit", href: "#toolkit" },
     { label: "Early Access", href: "mailto:hello@redtorii.com" },
   ],

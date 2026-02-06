@@ -319,18 +319,15 @@ export function HowItWorks() {
   });
 
   return (
-    <AnimatedSection
-      variants={staggerContainer}
-      className="bg-background"
-    >
-      <div
-        id="how-it-works"
-        className="scroll-mt-24"
+    <section id="how-it-works" className="scroll-mt-20">
+      <AnimatedSection
+        variants={staggerContainer}
+        className="bg-background"
       >
         {/* Section header */}
         <motion.div
           variants={fadeInUp}
-          className="mx-auto max-w-7xl px-6 lg:px-8 pt-20 lg:pt-32 pb-8 lg:pb-10 max-w-2xl"
+          className="mx-auto max-w-7xl px-6 lg:px-8 pt-8 lg:pt-12 pb-8 lg:pb-10 max-w-2xl"
         >
           <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
             How It Works
@@ -586,7 +583,7 @@ export function HowItWorks() {
             </div>
           </div>
         </div>
-      </div>
-    </AnimatedSection>
+      </AnimatedSection>
+    </section>
   );
 }

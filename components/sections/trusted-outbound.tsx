@@ -389,15 +389,15 @@ export function TrustedOutbound() {
   }, [activeIndex]);
 
   return (
-    <AnimatedSection
-      variants={staggerContainer}
-      className="relative bg-background pt-20 pb-12 lg:pt-32 lg:pb-16 overflow-hidden"
-    >
-      <div
-        ref={sectionRef}
-        id="use-cases"
-        className="relative mx-auto max-w-7xl px-6 lg:px-8 scroll-mt-24"
+    <section id="use-cases" className="scroll-mt-20">
+      <AnimatedSection
+        variants={staggerContainer}
+        className="relative bg-background py-20 lg:pb-32 overflow-hidden"
       >
+        <div
+          ref={sectionRef}
+          className="relative mx-auto max-w-7xl px-6 lg:px-8"
+        >
         {/* Section header */}
         <motion.div variants={fadeInUp} className="text-center mb-12 lg:mb-16">
           <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
@@ -499,6 +499,7 @@ export function TrustedOutbound() {
         </motion.div>
 
       </div>
-    </AnimatedSection>
+      </AnimatedSection>
+    </section>
   );
 }
