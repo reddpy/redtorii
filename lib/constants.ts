@@ -1,6 +1,6 @@
 export const NAV_LINKS = [
+  { label: "Use Cases", href: "#use-cases" },
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Channels", href: "#channels" },
   { label: "Toolkit", href: "#toolkit" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -28,7 +28,7 @@ export const PROBLEM_CARDS = [
     statLabel: "stolen worldwide in 2024",
     description:
       "More than the **global drug trade**. **79% of Americans** call it a major national problem. **68%** say AI will make it worse. No one has built the verification layer.",
-    icon: "TrendingDown" as const,
+    icon: "TrendingUp" as const,
   },
 ];
 
@@ -170,6 +170,31 @@ export const FAQ_ITEMS = [
       "Red Torii is the anti-impersonation stack for companies. It gives businesses the tools to protect their customers from fraud and impersonation across every communication channel — so people always know who they're really talking to.",
   },
   {
+    question: "Who is Red Torii built for?",
+    answer:
+      "Any company doing outbound communication — recruiting, healthcare, sales, financial services, customer success, and more. If your team reaches out to people via phone, email, SMS, or social channels, Red Torii helps recipients verify your legitimacy instantly.",
+  },
+  {
+    question: "Why not just use DMARC, SPF, or email authentication?",
+    answer:
+      "Those tools are important but they only cover email — and they work behind the scenes. Your customer never sees them. If someone spoofs your phone number, sends a fake Telegram message, or creates a lookalike LinkedIn profile, DMARC can't help. Red Torii is the customer-facing verification layer that works across every channel, not just email.",
+  },
+  {
+    question: "How is this different from Twitter/X verification or platform badges?",
+    answer:
+      "Platform verification is controlled by the platform, not by you. You can't verify your phone numbers on X, your SMS short codes on LinkedIn, or your support email on Telegram. Each platform is siloed. Red Torii gives you one place — on your own domain — where customers can verify any channel, regardless of platform.",
+  },
+  {
+    question: "Why not just use Trustpilot or a review site?",
+    answer:
+      "Review sites tell customers whether your company is reputable. Red Torii tells customers whether a specific phone number, email, or social handle actually belongs to your company. They solve different problems. A scammer can impersonate your brand and still link to your real Trustpilot page. Red Torii lets customers verify the exact channel contacting them — not just your brand in general.",
+  },
+  {
+    question: "How do customers verify a channel?",
+    answer:
+      "Customers visit the company's Trust Gate (which lives on the company's own domain, like verify.company.com) and search for the suspicious contact. They instantly see whether it's verified, not found, compromised, or deprecated — with clear guidance on what to do.",
+  },
+  {
     question: "How does channel verification work?",
     answer:
       "Companies verify their domain ownership via a DNS TXT record, then register their official channels in a dashboard. Each channel gets a status (verified, compromised, deprecated) that customers can look up instantly on the company's Trust Gate.",
@@ -180,24 +205,14 @@ export const FAQ_ITEMS = [
       "We support phone numbers, email domains, SMS short codes, and social media handles across X/Twitter, Telegram, Discord, WhatsApp, Instagram, LinkedIn, and Facebook.",
   },
   {
-    question: "How do customers verify a channel?",
-    answer:
-      "Customers visit the company's Trust Gate (which lives on the company's own domain, like verify.company.com) and search for the suspicious contact. They instantly see whether it's verified, not found, compromised, or deprecated — with clear guidance on what to do.",
-  },
-  {
-    question: "Can I use my own domain?",
-    answer:
-      "Yes. Red Torii supports custom domains via CNAME records. Your Trust Gate can live at verify.yourcompany.com instead of on our domain, building trust because customers see your domain, not ours.",
-  },
-  {
     question: "What happens if a channel is compromised?",
     answer:
       "You can instantly flag individual channels or activate Incident Lockdown to mark multiple channels as compromised with one click. Customers searching those channels will see a clear warning to not respond.",
   },
   {
-    question: "Who is Red Torii built for?",
+    question: "Can I use my own domain?",
     answer:
-      "Any company that communicates with customers and wants to protect them from impersonation scams. We're starting with crypto and fintech companies where fraud is most prevalent and the willingness to pay is highest.",
+      "Yes. Red Torii supports custom domains via CNAME records. Your Trust Gate can live at verify.yourcompany.com instead of on our domain, building trust because customers see your domain, not ours.",
   },
   {
     question: "How can I get access?",
@@ -206,10 +221,133 @@ export const FAQ_ITEMS = [
   },
 ];
 
+export const OUTBOUND_INDUSTRIES = [
+  {
+    id: "financial",
+    name: "Financial Services",
+    shortName: "Finance",
+    icon: "landmark" as const,
+    color: "#06B6D4",
+    sender: {
+      name: "First National",
+      role: "Fraud Prevention",
+      company: "First National Bank",
+      avatar: "FN",
+    },
+    message: {
+      preview: "We detected unusual activity on your account. Please verify...",
+      channel: "SMS",
+      channelIcon: "sms" as const,
+      channelValue: "32145 (Short Code)",
+    },
+    channels: ["Phone", "SMS", "Email"],
+    stat: "89%",
+    statLabel: "of bank fraud victims couldn't tell the scam from a real message",
+  },
+  {
+    id: "healthcare",
+    name: "Healthcare",
+    shortName: "Healthcare",
+    icon: "heart-pulse" as const,
+    color: "#EC4899",
+    sender: {
+      name: "Dr. Park's Office",
+      role: "Patient Coordinator",
+      company: "Valley Medical",
+      avatar: "VM",
+    },
+    message: {
+      preview: "This is Valley Medical calling to confirm your appointment...",
+      channel: "Phone Call",
+      channelIcon: "phone" as const,
+      channelValue: "+1 (555) 234-5678",
+    },
+    channels: ["Phone", "SMS", "Email"],
+    stat: "68%",
+    statLabel: "of patients screen calls from numbers they don't recognize",
+  },
+  {
+    id: "recruiting",
+    name: "Recruiting",
+    shortName: "Recruiting",
+    icon: "briefcase" as const,
+    color: "#8B5CF6",
+    sender: {
+      name: "Sarah Chen",
+      role: "Senior Recruiter",
+      company: "Acme Talent",
+      avatar: "SC",
+    },
+    message: {
+      preview: "Hi! I'm reaching out about a Senior Engineer role at Acme...",
+      channel: "LinkedIn DM",
+      channelIcon: "linkedin" as const,
+      channelValue: "@SarahChen-Acme",
+    },
+    channels: ["LinkedIn", "Email", "Phone"],
+    stat: "72%",
+    statLabel: "of candidates ignore recruiter messages they can't verify",
+  },
+  {
+    id: "sales",
+    name: "Sales",
+    shortName: "Sales",
+    icon: "trending-up" as const,
+    color: "#F59E0B",
+    sender: {
+      name: "James Rivera",
+      role: "Account Executive",
+      company: "CloudSync",
+      avatar: "JR",
+    },
+    message: {
+      preview: "Following up on our demo last week. Ready to discuss next steps?",
+      channel: "Email",
+      channelIcon: "email" as const,
+      channelValue: "james.r@cloudsync.com",
+    },
+    channels: ["Email", "Phone", "LinkedIn"],
+    stat: "45%",
+    statLabel: "of cold outreach goes unanswered due to authenticity doubts",
+  },
+];
+
+export const TRUST_FLOW_STEPS = [
+  { label: "Outbound sent", icon: "send" },
+  { label: "Passes through Red Torii", icon: "shield-check" },
+  { label: "Recipient verifies", icon: "check-circle" },
+];
+
+export const LINK_FLOW_STEPS = [
+  {
+    id: "code",
+    label: "Embed",
+    caption: "Add to your site",
+  },
+  {
+    id: "click",
+    label: "Click",
+    caption: "Customer clicks",
+  },
+  {
+    id: "verify",
+    label: "Verify",
+    caption: "Security checkpoint",
+  },
+  {
+    id: "redirect",
+    label: "Redirect",
+    caption: "Safe to engage",
+  },
+];
+
+export const CODE_SNIPPET = `<a href="https://rt.link/acme/sales">
+  Contact Sales
+</a>`;
+
 export const FOOTER_LINKS = {
   product: [
     { label: "How It Works", href: "#how-it-works" },
-    { label: "Channels", href: "#channels" },
     { label: "Toolkit", href: "#toolkit" },
     { label: "Early Access", href: "mailto:hello@redtorii.com" },
   ],

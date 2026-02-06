@@ -10,14 +10,12 @@ export function FAQ() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <AnimatedSection
-      variants={staggerContainer}
-      className="bg-background py-20 lg:py-32"
-    >
-      <div
-        id="faq"
-        className="mx-auto max-w-7xl px-6 lg:px-8 scroll-mt-24"
+    <section id="faq" className="scroll-mt-20">
+      <AnimatedSection
+        variants={staggerContainer}
+        className="bg-background py-20 lg:pb-32"
       >
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-[280px_1fr] lg:gap-20">
           {/* Left column — title */}
           <motion.div variants={fadeInUp} className="lg:sticky lg:top-32 lg:self-start">
@@ -67,7 +65,8 @@ export function FAQ() {
             })}
           </motion.div>
         </div>
-      </div>
-    </AnimatedSection>
+        </div>
+      </AnimatedSection>
+    </section>
   );
 }

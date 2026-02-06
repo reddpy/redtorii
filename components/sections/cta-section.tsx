@@ -30,8 +30,8 @@ export function CTASection() {
           <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">your customers?</span>
         </motion.h2>
         <motion.p variants={fadeInUp} className="mt-4 text-lg text-white/80">
-          We&apos;re onboarding early partners now. Book a demo to see the
-          anti-impersonation stack in action.
+          We&apos;re onboarding early partners now. Get in touch to see the
+          platform in action.
         </motion.p>
         <motion.div variants={fadeInUp} className="mt-8">
           <Button
@@ -39,7 +39,7 @@ export function CTASection() {
             asChild
             className="bg-white text-torii-red hover:bg-white/90 px-8 text-base font-mono font-bold tracking-wide"
           >
-            <a href="mailto:hello@redtorii.com">Book a Demo</a>
+            <a href="mailto:hello@redtorii.com">Get Early Access</a>
           </Button>
         </motion.div>
       </div>

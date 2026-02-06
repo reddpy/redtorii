@@ -26,7 +26,7 @@ export function Hero() {
               variant="secondary"
               className="mb-6 bg-torii-red-light text-torii-red font-mono text-xs tracking-wider px-3 py-1.5 uppercase"
             >
-              Anti-Impersonation Stack
+              B2B Customer Protection Platform
             </Badge>
           </motion.div>
 
@@ -61,7 +61,7 @@ export function Hero() {
               className="bg-torii-red text-text-on-red hover:bg-torii-red-hover px-8 text-base font-mono font-semibold tracking-wide gap-2"
             >
               <a href="mailto:hello@redtorii.com">
-                Book a Demo
+                Get Early Access
                 <ArrowRight className="h-4 w-4" />
               </a>
             </Button>
@@ -96,7 +96,7 @@ export function Hero() {
                 alt="Stanford University"
                 width={40}
                 height={40}
-                className="h-24 sm:h-28 w-auto opacity-40 grayscale"
+                className="h-28 sm:h-36 w-auto opacity-40 grayscale"
               />
               <Image
                 src="/logos/new-relic.svg"
@@ -124,9 +124,13 @@ export function Hero() {
                 <div className="h-2.5 w-2.5 rounded-full bg-state-deprecated/60" />
                 <div className="h-2.5 w-2.5 rounded-full bg-state-verified/60" />
               </div>
-              <div className="ml-3 flex-1 bg-background border border-border-default px-3 py-1">
-                <span className="font-mono text-xs text-text-muted">
-                  verify.acmecorp.com
+              <div className="ml-3 flex-1 bg-background border-2 border-torii-red/30 rounded-md px-4 py-1.5 flex items-center gap-2">
+                <div className="h-4 w-4 rounded-full bg-state-verified/20 flex items-center justify-center">
+                  <div className="h-2 w-2 rounded-full bg-state-verified" />
+                </div>
+                <span className="font-mono text-sm font-semibold">
+                  <span className="text-torii-red">verify.</span>
+                  <span className="text-text-primary">acmecorp.com</span>
                 </span>
               </div>
             </div>
@@ -281,22 +285,14 @@ export function Hero() {
           </div>
 
           {/* Floating verified badge */}
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute -bottom-3 -right-3 bg-surface-dark border border-white/10 px-4 py-2.5 shadow-lg"
-          >
+          <div className="absolute -bottom-6 right-4 bg-surface-dark border border-white/10 px-4 py-2.5 shadow-lg">
             <div className="flex items-center gap-2">
               <div className="h-2 w-2 bg-state-verified animate-pulse" />
               <span className="font-mono text-xs font-bold text-text-on-dark tracking-wider uppercase">
                 10 channels verified
               </span>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

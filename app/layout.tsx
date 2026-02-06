@@ -13,9 +13,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Red Torii - Official Channel Verification",
+  metadataBase: new URL("https://redtorii.com"),
+  title: "Red Torii — The Anti-Impersonation Platform for Companies",
   description:
-    "Verify if a phone number, email, or social handle is really from a company. The gate between you and scams.",
+    "Protect your customers from fraud and impersonation. Register your official phone numbers, emails, and social handles — so people always know who they're really talking to.",
+  openGraph: {
+    title: "Red Torii — The Anti-Impersonation Platform for Companies",
+    description:
+      "Protect your customers from fraud and impersonation across every channel.",
+    siteName: "Red Torii",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Red Torii — The Anti-Impersonation Platform for Companies",
+    description:
+      "Protect your customers from fraud and impersonation across every channel.",
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
