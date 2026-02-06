@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Separator } from "@/components/ui/separator";
+import Image from "next/image";
 import { fadeIn } from "@/lib/animation-variants";
 import { ToriiIcon } from "@/components/torii-icon";
 import { FOOTER_LINKS } from "@/lib/constants";
@@ -62,12 +63,15 @@ export function Footer() {
           {/* Top section: logo + tagline + links */}
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
             <div className="lg:col-span-1">
-              <div className="flex items-center gap-2">
-                <ToriiIcon className="h-8 w-8 text-torii-red" />
-                <span className="font-mono text-xl font-extrabold tracking-tight">
-                  <span className="text-torii-red">Red</span>
-                  <span className="text-text-on-dark"> Torii</span>
-                </span>
+              <div className="flex items-center gap-2.5">
+                <ToriiIcon className="h-7 w-7 text-torii-red" />
+                <Image
+                  src="/logos/redtorii-light.svg"
+                  alt="Red Torii"
+                  width={160}
+                  height={20}
+                  className="h-5 w-auto"
+                />
               </div>
               <p className="mt-4 max-w-xs text-sm leading-relaxed text-text-muted">
                 The customer protection platform. Everything you need to help

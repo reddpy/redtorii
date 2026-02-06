@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ToriiIcon } from "@/components/torii-icon";
 import { NAV_LINKS } from "@/lib/constants";
@@ -28,12 +29,16 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <a href="#" className="flex items-center gap-2">
-          <ToriiIcon className="h-8 w-8 text-torii-red" />
-          <span className="font-mono text-xl font-extrabold tracking-tight">
-            <span className="text-torii-red">Red</span>
-            <span className="text-text-primary"> Torii</span>
-          </span>
+        <a href="#" className="flex items-center gap-2.5">
+          <ToriiIcon className="h-7 w-7 text-torii-red" />
+          <Image
+            src="/logos/redtorii-dark.svg"
+            alt="Red Torii"
+            width={160}
+            height={20}
+            className="h-5 w-auto"
+            priority
+          />
         </a>
 
         <div className="hidden items-center gap-8 md:flex">

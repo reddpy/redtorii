@@ -7,6 +7,7 @@ import { Globe, Layers, Rocket, Search, Upload, Phone, Mail, MessageSquare, Chec
 import { FaXTwitter, FaTelegram } from "react-icons/fa6";
 import type { IconType } from "react-icons";
 import type { LucideIcon } from "lucide-react";
+import Image from "next/image";
 import { AnimatedSection } from "@/components/animated-section";
 import { fadeInUp, staggerContainer } from "@/lib/animation-variants";
 import { STEPS, STEP_CHANNELS } from "@/lib/constants";
@@ -351,6 +352,9 @@ export function HowItWorks() {
   const subtextY = useTransform(payoffProgress, [0.62, 0.67], [40, 0]);
   const checklistOpacity = useTransform(payoffProgress, [0.67, 0.72], [0, 1]);
   const checklistY = useTransform(payoffProgress, [0.67, 0.72], [40, 0]);
+  const badgeOpacity = useTransform(payoffProgress, [0.74, 0.82], [0, 1]);
+  const badgeScale = useTransform(payoffProgress, [0.74, 0.82], [0.85, 1]);
+  const badgeY = useTransform(payoffProgress, [0.74, 0.82], [30, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     if (isMobile) return;
@@ -581,7 +585,7 @@ export function HowItWorks() {
             />
 
 <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
-              <h3 className="font-display text-7xl sm:text-8xl lg:text-9xl text-white leading-[0.95]">
+              <h3 className="font-display text-8xl sm:text-8xl lg:text-9xl text-white leading-[0.95]">
                 <motion.span
                   className="inline-block"
                   style={{ opacity: word1Opacity, y: word1Y, scale: word1Scale }}
@@ -596,6 +600,19 @@ export function HowItWorks() {
                   protected.
                 </motion.span>
               </h3>
+
+              <motion.div
+                style={{ opacity: badgeOpacity, scale: badgeScale, y: badgeY }}
+                className="mt-6 flex justify-center"
+              >
+                <Image
+                  src="/logos/torii-badge.svg"
+                  alt="Red Torii Badge"
+                  width={80}
+                  height={84}
+                  className="w-16 sm:w-20 h-auto"
+                />
+              </motion.div>
 
               <motion.p
                 style={{ opacity: subtextOpacity, y: subtextY }}
@@ -617,6 +634,7 @@ export function HowItWorks() {
                   </div>
                 ))}
               </motion.div>
+
             </div>
           </div>
         </div>
