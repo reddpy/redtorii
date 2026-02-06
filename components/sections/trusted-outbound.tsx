@@ -145,16 +145,20 @@ function RecipientSearches({
 
       {/* Browser mockup */}
       <div className="p-5">
-        {/* URL bar */}
+        {/* URL bar - enhanced like hero */}
         <div className="flex items-center gap-2 border border-border-default bg-surface-secondary px-3 py-2 mb-4">
           <div className="flex gap-1">
-            <div className="h-2 w-2 rounded-full bg-state-compromised/40" />
-            <div className="h-2 w-2 rounded-full bg-state-deprecated/40" />
-            <div className="h-2 w-2 rounded-full bg-state-verified/40" />
+            <div className="h-2 w-2 rounded-full bg-state-compromised/50" />
+            <div className="h-2 w-2 rounded-full bg-state-deprecated/50" />
+            <div className="h-2 w-2 rounded-full bg-state-verified/50" />
           </div>
-          <div className="flex-1 bg-background border border-border-subtle px-2 py-1">
-            <span className="font-mono text-[10px] text-text-muted">
-              verify.{sender.company.toLowerCase().replace(/\s/g, "")}.com
+          <div className="flex-1 bg-background border-2 border-torii-red/30 px-2.5 py-1 flex items-center gap-1.5">
+            <div className="h-3.5 w-3.5 rounded-full bg-state-verified/20 flex items-center justify-center shrink-0">
+              <div className="h-1.5 w-1.5 rounded-full bg-state-verified" />
+            </div>
+            <span className="font-mono text-[11px] font-semibold">
+              <span className="text-torii-red">verify.</span>
+              <span className="text-text-primary">{sender.company.toLowerCase().replace(/\s/g, "")}.com</span>
             </span>
           </div>
         </div>
@@ -170,9 +174,12 @@ function RecipientSearches({
           <span className="font-mono text-xs font-bold text-text-primary">
             {sender.company}
           </span>
-          <span className="font-mono text-[10px] text-state-verified">
-            Verified
-          </span>
+          <div className="flex items-center gap-1">
+            <CheckCircle2 className="h-3 w-3 text-state-verified" />
+            <span className="font-mono text-[10px] text-state-verified font-medium">
+              Verified
+            </span>
+          </div>
         </div>
 
         {/* Search bar with the channel value */}
@@ -309,10 +316,14 @@ function MobileStepIndicator({
   currentStep,
   onStepChange,
   color,
+  isAutoPlaying,
+  timerKey,
 }: {
   currentStep: number;
   onStepChange: (step: number) => void;
   color: string;
+  isAutoPlaying: boolean;
+  timerKey: string;
 }) {
   const steps = [
     { num: 1, label: "Sent" },
@@ -321,33 +332,54 @@ function MobileStepIndicator({
   ];
 
   return (
-    <div className="flex items-center justify-center gap-2 mb-4">
-      {steps.map((step, i) => (
-        <button
-          key={step.num}
-          onClick={() => onStepChange(step.num)}
-          className="flex items-center gap-1"
-        >
-          <div
-            className={`h-8 w-8 flex items-center justify-center font-mono text-xs font-bold transition-all ${
-              currentStep === step.num
-                ? "text-white"
-                : "bg-surface-secondary text-text-muted border border-border-default"
-            }`}
-            style={currentStep === step.num ? { background: step.num === 3 ? "#22C55E" : color } : {}}
-          >
-            {step.num}
+    <div className="flex items-center justify-center gap-3 mb-4">
+      {steps.map((step, i) => {
+        const isActive = currentStep === step.num;
+        const stepColor = step.num === 3 ? "#22C55E" : color;
+
+        return (
+          <div key={step.num} className="flex items-center gap-1">
+            <button
+              onClick={() => onStepChange(step.num)}
+              className="flex flex-col items-center gap-1.5"
+            >
+              <div className="relative">
+                <div
+                  className={`h-10 w-10 flex items-center justify-center font-mono text-sm font-bold transition-all ${
+                    isActive
+                      ? "text-white"
+                      : "bg-surface-secondary text-text-muted border border-border-default"
+                  }`}
+                  style={isActive ? { background: stepColor } : {}}
+                >
+                  {step.num}
+                </div>
+                {/* Progress bar underneath active step */}
+                {isActive && isAutoPlaying && (
+                  <div className="absolute -bottom-2 left-0 right-0 h-1 bg-border-default overflow-hidden">
+                    <motion.div
+                      className="h-full"
+                      style={{ background: stepColor }}
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 5, ease: "linear" }}
+                      key={`progress-${timerKey}-${currentStep}`}
+                    />
+                  </div>
+                )}
+              </div>
+              <span className={`font-mono text-[10px] uppercase tracking-wider mt-1 ${
+                isActive ? "text-text-primary font-semibold" : "text-text-muted"
+              }`}>
+                {step.label}
+              </span>
+            </button>
+            {i < steps.length - 1 && (
+              <div className="w-6 h-px bg-border-default mx-1 mb-4" />
+            )}
           </div>
-          <span className={`font-mono text-[10px] uppercase tracking-wider ${
-            currentStep === step.num ? "text-text-primary font-semibold" : "text-text-muted"
-          }`}>
-            {step.label}
-          </span>
-          {i < steps.length - 1 && (
-            <div className="w-4 h-px bg-border-default mx-1" />
-          )}
-        </button>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -356,23 +388,19 @@ function MobileStepIndicator({
 export function TrustedOutbound() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileStep, setMobileStep] = useState(1);
+  const [timerReset, setTimerReset] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
   const activeIndustry = OUTBOUND_INDUSTRIES[activeIndex];
 
-  // Auto-rotate industries - 18 seconds to allow steps to complete
-  useEffect(() => {
-    if (!isInView) return;
+  // Handle manual step change - resets timer
+  const handleStepChange = (step: number) => {
+    setMobileStep(step);
+    setTimerReset((prev) => prev + 1);
+  };
 
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % OUTBOUND_INDUSTRIES.length);
-    }, 18000);
-
-    return () => clearInterval(timer);
-  }, [isInView]);
-
-  // Auto-advance mobile steps - 5 seconds each (15s total for all 3)
+  // Auto-advance mobile steps - 5 seconds each, resets on manual interaction
   useEffect(() => {
     if (!isInView) return;
 
@@ -381,7 +409,7 @@ export function TrustedOutbound() {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [isInView, activeIndex]);
+  }, [isInView, activeIndex, timerReset]);
 
   // Reset mobile step when industry changes
   useEffect(() => {
@@ -464,37 +492,42 @@ export function TrustedOutbound() {
           <div className="lg:hidden max-w-md mx-auto">
             <MobileStepIndicator
               currentStep={mobileStep}
-              onStepChange={setMobileStep}
+              onStepChange={handleStepChange}
               color={activeIndustry.color}
+              isAutoPlaying={isInView}
+              timerKey={`${activeIndex}-${timerReset}`}
             />
 
             <div className="relative overflow-hidden">
-              {mobileStep === 1 && (
-                <MessageSent
-                  sender={activeIndustry.sender}
-                  message={activeIndustry.message}
-                  color={activeIndustry.color}
-                />
-              )}
-              {mobileStep === 2 && (
-                <RecipientSearches
-                  sender={activeIndustry.sender}
-                  message={activeIndustry.message}
-                  color={activeIndustry.color}
-                />
-              )}
-              {mobileStep === 3 && (
-                <VerifiedResult
-                  sender={activeIndustry.sender}
-                  message={activeIndustry.message}
-                />
-              )}
+              <motion.div
+                key={mobileStep}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                {mobileStep === 1 && (
+                  <MessageSent
+                    sender={activeIndustry.sender}
+                    message={activeIndustry.message}
+                    color={activeIndustry.color}
+                  />
+                )}
+                {mobileStep === 2 && (
+                  <RecipientSearches
+                    sender={activeIndustry.sender}
+                    message={activeIndustry.message}
+                    color={activeIndustry.color}
+                  />
+                )}
+                {mobileStep === 3 && (
+                  <VerifiedResult
+                    sender={activeIndustry.sender}
+                    message={activeIndustry.message}
+                  />
+                )}
+              </motion.div>
             </div>
-
-            {/* Tap hint */}
-            <p className="text-center mt-3 font-mono text-[10px] text-text-muted">
-              Tap steps above to navigate
-            </p>
           </div>
         </motion.div>
 
