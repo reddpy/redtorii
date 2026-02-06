@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://redtorii.com"),
+  metadataBase: new URL("https://www.redtorii.com"),
   title: "Red Torii — The Anti-Impersonation Platform for Companies",
   description:
     "Protect your customers from fraud and impersonation. Register your official phone numbers, emails, and social handles — so people always know who they're really talking to.",
