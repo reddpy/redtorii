@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { motion, useInView, useSpring, useMotionValue } from "framer-motion";
-import { ShieldAlert, HelpCircle, TrendingDown } from "lucide-react";
+import { ShieldAlert, HelpCircle, TrendingUp } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { FloatingCrosses } from "@/components/background-grid";
 import { AnimatedSection } from "@/components/animated-section";
@@ -12,7 +12,7 @@ import { PROBLEM_CARDS } from "@/lib/constants";
 const iconMap = {
   ShieldAlert,
   HelpCircle,
-  TrendingDown,
+  TrendingUp,
 };
 
 function AnimatedStat({ value }: { value: string }) {
@@ -69,7 +69,7 @@ function HighlightedText({ text }: { text: string }) {
           </span>
         ) : (
           <span key={i}>{part}</span>
-        )
+        ),
       )}
     </>
   );
@@ -89,9 +89,13 @@ export function Problem() {
             The Problem
           </p>
           <h2 className="mt-3 tracking-tight text-text-primary">
-            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">Trust is broken</span>
+            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">
+              Trust is broken
+            </span>
             <br />
-            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">on every channel</span>
+            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">
+              on every channel
+            </span>
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-text-secondary">
             Scammers impersonate companies across every channel. Customers have
@@ -133,9 +137,30 @@ export function Problem() {
           className="mt-6 flex flex-wrap justify-end gap-x-4 gap-y-1 text-xs text-text-muted"
         >
           <span>Sources:</span>
-          <a href="https://www.pewresearch.org/internet/2025/07/31/online-scams-and-attacks-in-america-today/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-text-secondary transition-colors">Pew Research 2025</a>
-          <a href="https://www.ftc.gov/news-events/news/press-releases/2025/03/new-ftc-data-show-big-jump-reported-losses-fraud-125-billion-2024" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-text-secondary transition-colors">FTC Sentinel 2025</a>
-          <a href="https://www.jec.senate.gov/public/_cache/files/d229cc6d-0dc5-4828-9f92-5de8ffffa326/july-2025-issue-brief-scams-1.pdf" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-text-secondary transition-colors">JEC 2025</a>
+          <a
+            href="https://www.pewresearch.org/internet/2025/07/31/online-scams-and-attacks-in-america-today/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-text-secondary transition-colors"
+          >
+            Pew Research 2025
+          </a>
+          <a
+            href="https://www.ftc.gov/news-events/news/press-releases/2025/03/new-ftc-data-show-big-jump-reported-losses-fraud-125-billion-2024"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-text-secondary transition-colors"
+          >
+            FTC Sentinel 2025
+          </a>
+          <a
+            href="https://www.jec.senate.gov/public/_cache/files/d229cc6d-0dc5-4828-9f92-5de8ffffa326/july-2025-issue-brief-scams-1.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2 hover:text-text-secondary transition-colors"
+          >
+            JEC 2025
+          </a>
         </motion.div>
       </div>
     </AnimatedSection>

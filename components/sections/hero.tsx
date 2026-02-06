@@ -26,7 +26,7 @@ export function Hero() {
               variant="secondary"
               className="mb-6 bg-torii-red-light text-torii-red font-mono text-xs tracking-wider px-3 py-1.5 uppercase"
             >
-              Anti-Impersonation Stack
+              B2B Customer Protection Platform
             </Badge>
           </motion.div>
 

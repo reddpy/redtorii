@@ -28,7 +28,7 @@ export const PROBLEM_CARDS = [
     statLabel: "stolen worldwide in 2024",
     description:
       "More than the **global drug trade**. **79% of Americans** call it a major national problem. **68%** say AI will make it worse. No one has built the verification layer.",
-    icon: "TrendingDown" as const,
+    icon: "TrendingUp" as const,
   },
 ];
 

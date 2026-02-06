@@ -40,8 +40,8 @@ function MessageSent({
   message,
   color,
 }: {
-  sender: typeof OUTBOUND_INDUSTRIES[0]["sender"];
-  message: typeof OUTBOUND_INDUSTRIES[0]["message"];
+  sender: (typeof OUTBOUND_INDUSTRIES)[0]["sender"];
+  message: (typeof OUTBOUND_INDUSTRIES)[0]["message"];
   color: string;
 }) {
   const ChannelIcon = channelIconMap[message.channelIcon];
@@ -118,11 +118,10 @@ function RecipientSearches({
   message,
   color,
 }: {
-  sender: typeof OUTBOUND_INDUSTRIES[0]["sender"];
-  message: typeof OUTBOUND_INDUSTRIES[0]["message"];
+  sender: (typeof OUTBOUND_INDUSTRIES)[0]["sender"];
+  message: (typeof OUTBOUND_INDUSTRIES)[0]["message"];
   color: string;
 }) {
-
   return (
     <div className="border border-border-default bg-surface-primary h-full">
       {/* Step label */}
@@ -158,7 +157,9 @@ function RecipientSearches({
             </div>
             <span className="font-mono text-[11px] font-semibold">
               <span className="text-torii-red">verify.</span>
-              <span className="text-text-primary">{sender.company.toLowerCase().replace(/\s/g, "")}.com</span>
+              <span className="text-text-primary">
+                {sender.company.toLowerCase().replace(/\s/g, "")}.com
+              </span>
             </span>
           </div>
         </div>
@@ -207,8 +208,8 @@ function VerifiedResult({
   sender,
   message,
 }: {
-  sender: typeof OUTBOUND_INDUSTRIES[0]["sender"];
-  message: typeof OUTBOUND_INDUSTRIES[0]["message"];
+  sender: (typeof OUTBOUND_INDUSTRIES)[0]["sender"];
+  message: (typeof OUTBOUND_INDUSTRIES)[0]["message"];
 }) {
   const ChannelIcon = channelIconMap[message.channelIcon];
 
@@ -259,7 +260,9 @@ function VerifiedResult({
           ].map((check) => (
             <div key={check} className="flex items-center gap-2">
               <CheckCircle2 className="h-3.5 w-3.5 text-state-verified" />
-              <span className="font-mono text-xs text-text-secondary">{check}</span>
+              <span className="font-mono text-xs text-text-secondary">
+                {check}
+              </span>
             </div>
           ))}
         </div>
@@ -302,7 +305,9 @@ function IndustrySelector({
                 : "bg-surface-primary text-text-secondary border-border-default hover:border-text-muted hover:text-text-primary"
             }`}
           >
-            <Icon className={`h-4 w-4 sm:h-5 sm:w-5 ${isActive ? "text-torii-red" : "text-text-muted group-hover:text-torii-red"}`} />
+            <Icon
+              className={`h-4 w-4 sm:h-5 sm:w-5 ${isActive ? "text-torii-red" : "text-text-muted group-hover:text-torii-red"}`}
+            />
             <span>{industry.shortName}</span>
           </button>
         );
@@ -368,9 +373,13 @@ function MobileStepIndicator({
                   </div>
                 )}
               </div>
-              <span className={`font-mono text-[10px] uppercase tracking-wider mt-1 ${
-                isActive ? "text-text-primary font-semibold" : "text-text-muted"
-              }`}>
+              <span
+                className={`font-mono text-[10px] uppercase tracking-wider mt-1 ${
+                  isActive
+                    ? "text-text-primary font-semibold"
+                    : "text-text-muted"
+                }`}
+              >
                 {step.label}
               </span>
             </button>
@@ -426,112 +435,120 @@ export function TrustedOutbound() {
           ref={sectionRef}
           className="relative mx-auto max-w-7xl px-6 lg:px-8"
         >
-        {/* Section header */}
-        <motion.div variants={fadeInUp} className="text-center mb-12 lg:mb-16">
-          <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
-            Use Cases
-          </p>
-          <h2 className="mt-3 tracking-tight text-text-primary">
-            <span className="font-display text-4xl sm:text-5xl lg:text-6xl">
-              Let them verify
-            </span>
-            <br />
-            <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">
-              it&apos;s really you
-            </span>
-          </h2>
-          <p className="mt-4 mx-auto max-w-2xl text-lg text-text-secondary">
-            When your team reaches out, recipients can instantly check your Trust Gate
-            to confirm it&apos;s legitimate — then respond with confidence.
-          </p>
-        </motion.div>
+          {/* Section header */}
+          <motion.div
+            variants={fadeInUp}
+            className="text-center mb-12 lg:mb-16"
+          >
+            <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-torii-red">
+              Use Cases
+            </p>
+            <h2 className="mt-3 tracking-tight text-text-primary">
+              <span className="font-display text-4xl sm:text-5xl lg:text-6xl">
+                Let them verify
+              </span>
+              <br />
+              <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">
+                it&apos;s really you
+              </span>
+            </h2>
+            <p className="mt-4 mx-auto max-w-2xl text-lg text-text-secondary">
+              Every outbound message becomes verifiable. <br />
+              Recipients check your Trust Gate and respond with confidence.
+            </p>
+          </motion.div>
 
-        {/* Industry selector */}
-        <motion.div variants={fadeInUp} className="mb-6">
-          <p className="text-center mb-3 font-mono text-xs text-text-muted uppercase tracking-wider">
-            See how it works for
-          </p>
-          <IndustrySelector
-            industries={OUTBOUND_INDUSTRIES}
-            activeIndex={activeIndex}
-            onSelect={setActiveIndex}
-          />
-        </motion.div>
-
-        {/* Industry stat - right below buttons */}
-        <motion.div variants={fadeInUp} className="mb-10 lg:mb-14 text-center h-12 flex items-center justify-center">
-          <p className="font-mono text-sm sm:text-base text-text-secondary max-w-xl mx-auto">
-            <span className="font-bold text-base sm:text-lg" style={{ color: activeIndustry.color }}>
-              {activeIndustry.stat}
-            </span>
-            {" "}{activeIndustry.statLabel}
-          </p>
-        </motion.div>
-
-        {/* Three-step flow */}
-        <motion.div variants={fadeInUp}>
-          {/* Desktop: 3 columns */}
-          <div className="hidden lg:grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <MessageSent
-              sender={activeIndustry.sender}
-              message={activeIndustry.message}
-              color={activeIndustry.color}
+          {/* Industry selector */}
+          <motion.div variants={fadeInUp} className="mb-6">
+            <p className="text-center mb-3 font-mono text-xs text-text-muted uppercase tracking-wider">
+              See how it works for
+            </p>
+            <IndustrySelector
+              industries={OUTBOUND_INDUSTRIES}
+              activeIndex={activeIndex}
+              onSelect={setActiveIndex}
             />
-            <RecipientSearches
-              sender={activeIndustry.sender}
-              message={activeIndustry.message}
-              color={activeIndustry.color}
-            />
-            <VerifiedResult
-              sender={activeIndustry.sender}
-              message={activeIndustry.message}
-            />
-          </div>
+          </motion.div>
 
-          {/* Mobile: Single card with step switcher */}
-          <div className="lg:hidden max-w-md mx-auto">
-            <MobileStepIndicator
-              currentStep={mobileStep}
-              onStepChange={handleStepChange}
-              color={activeIndustry.color}
-              isAutoPlaying={isInView}
-              timerKey={`${activeIndex}-${timerReset}`}
-            />
-
-            <div className="relative overflow-hidden">
-              <motion.div
-                key={mobileStep}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
+          {/* Industry stat - right below buttons */}
+          <motion.div
+            variants={fadeInUp}
+            className="mb-10 lg:mb-14 text-center h-12 flex items-center justify-center"
+          >
+            <p className="font-mono text-sm sm:text-base text-text-secondary max-w-xl mx-auto">
+              <span
+                className="font-bold text-base sm:text-lg"
+                style={{ color: activeIndustry.color }}
               >
-                {mobileStep === 1 && (
-                  <MessageSent
-                    sender={activeIndustry.sender}
-                    message={activeIndustry.message}
-                    color={activeIndustry.color}
-                  />
-                )}
-                {mobileStep === 2 && (
-                  <RecipientSearches
-                    sender={activeIndustry.sender}
-                    message={activeIndustry.message}
-                    color={activeIndustry.color}
-                  />
-                )}
-                {mobileStep === 3 && (
-                  <VerifiedResult
-                    sender={activeIndustry.sender}
-                    message={activeIndustry.message}
-                  />
-                )}
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
+                {activeIndustry.stat}
+              </span>{" "}
+              {activeIndustry.statLabel}
+            </p>
+          </motion.div>
 
-      </div>
+          {/* Three-step flow */}
+          <motion.div variants={fadeInUp}>
+            {/* Desktop: 3 columns */}
+            <div className="hidden lg:grid lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              <MessageSent
+                sender={activeIndustry.sender}
+                message={activeIndustry.message}
+                color={activeIndustry.color}
+              />
+              <RecipientSearches
+                sender={activeIndustry.sender}
+                message={activeIndustry.message}
+                color={activeIndustry.color}
+              />
+              <VerifiedResult
+                sender={activeIndustry.sender}
+                message={activeIndustry.message}
+              />
+            </div>
+
+            {/* Mobile: Single card with step switcher */}
+            <div className="lg:hidden max-w-md mx-auto">
+              <MobileStepIndicator
+                currentStep={mobileStep}
+                onStepChange={handleStepChange}
+                color={activeIndustry.color}
+                isAutoPlaying={isInView}
+                timerKey={`${activeIndex}-${timerReset}`}
+              />
+
+              <div className="relative overflow-hidden">
+                <motion.div
+                  key={mobileStep}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {mobileStep === 1 && (
+                    <MessageSent
+                      sender={activeIndustry.sender}
+                      message={activeIndustry.message}
+                      color={activeIndustry.color}
+                    />
+                  )}
+                  {mobileStep === 2 && (
+                    <RecipientSearches
+                      sender={activeIndustry.sender}
+                      message={activeIndustry.message}
+                      color={activeIndustry.color}
+                    />
+                  )}
+                  {mobileStep === 3 && (
+                    <VerifiedResult
+                      sender={activeIndustry.sender}
+                      message={activeIndustry.message}
+                    />
+                  )}
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </AnimatedSection>
     </section>
   );

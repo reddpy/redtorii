@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent, useTransform, AnimatePresence } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent, useTransform, useMotionValue, AnimatePresence } from "framer-motion";
+import type { MotionValue } from "framer-motion";
 import { Globe, Layers, Rocket, Search, Upload, Phone, Mail, MessageSquare, CheckCircle2 } from "lucide-react";
 import { FaXTwitter, FaTelegram } from "react-icons/fa6";
 import type { IconType } from "react-icons";
@@ -25,9 +26,17 @@ const channelIconMap: Record<string, IconType | LucideIcon> = {
 };
 
 /* ─── Domain Verification Mockup ─── */
-function DomainMockup({ active }: { active: boolean }) {
+function DomainMockup({ progress }: { progress?: MotionValue<number> }) {
+  const fallback = useMotionValue(1);
+  const p = progress ?? fallback;
+
+  const shellOpacity = useTransform(p, [0.05, 0.2], [0, 1]);
+  const shellY = useTransform(p, [0.05, 0.2], [20, 0]);
+  const successOpacity = useTransform(p, [0.2, 0.4], [0, 1]);
+  const successY = useTransform(p, [0.2, 0.4], [6, 0]);
+
   return (
-    <div className="border border-border-default bg-surface-primary overflow-hidden w-full">
+    <motion.div style={{ opacity: shellOpacity, y: shellY }} className="border border-border-default bg-surface-primary overflow-hidden w-full">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-border-default px-5 py-3.5">
         <div className="flex items-center gap-2.5">
@@ -66,11 +75,9 @@ function DomainMockup({ active }: { active: boolean }) {
           </span>
         </div>
 
-        {/* Animated success state */}
+        {/* Scroll-driven success state */}
         <motion.div
-          initial={{ opacity: 0, y: 6 }}
-          animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-          transition={{ duration: 0.5, delay: active ? 0.8 : 0 }}
+          style={{ opacity: successOpacity, y: successY }}
           className="border border-state-verified/20 bg-state-verified/5 p-4"
         >
           <div className="flex items-center gap-3">
@@ -88,12 +95,36 @@ function DomainMockup({ active }: { active: boolean }) {
           </div>
         </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 /* ─── Dashboard Mockup: Channel Registration ─── */
-function DashboardMockup({ active }: { active: boolean }) {
+function DashboardMockup({ progress }: { progress?: MotionValue<number> }) {
+  const fallback = useMotionValue(1);
+  const p = progress ?? fallback;
+
+  // Each channel row reveals sequentially across the scroll range
+  const ch0Opacity = useTransform(p, [0.03, 0.1], [0, 1]);
+  const ch0X = useTransform(p, [0.03, 0.1], [-8, 0]);
+  const ch1Opacity = useTransform(p, [0.08, 0.15], [0, 1]);
+  const ch1X = useTransform(p, [0.08, 0.15], [-8, 0]);
+  const ch2Opacity = useTransform(p, [0.13, 0.2], [0, 1]);
+  const ch2X = useTransform(p, [0.13, 0.2], [-8, 0]);
+  const ch3Opacity = useTransform(p, [0.18, 0.25], [0, 1]);
+  const ch3X = useTransform(p, [0.18, 0.25], [-8, 0]);
+  const ch4Opacity = useTransform(p, [0.23, 0.3], [0, 1]);
+  const ch4X = useTransform(p, [0.23, 0.3], [-8, 0]);
+  const bulkOpacity = useTransform(p, [0.3, 0.4], [0, 1]);
+
+  const channelStyles = [
+    { opacity: ch0Opacity, x: ch0X },
+    { opacity: ch1Opacity, x: ch1X },
+    { opacity: ch2Opacity, x: ch2X },
+    { opacity: ch3Opacity, x: ch3X },
+    { opacity: ch4Opacity, x: ch4X },
+  ];
+
   return (
     <div className="border border-border-default bg-surface-primary overflow-hidden w-full">
       {/* Header */}
@@ -117,9 +148,7 @@ function DashboardMockup({ active }: { active: boolean }) {
         return (
           <motion.div
             key={ch.value}
-            initial={{ opacity: 0, x: -8 }}
-            animate={active ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
-            transition={{ duration: 0.3, delay: active ? 0.15 + i * 0.1 : 0 }}
+            style={channelStyles[i]}
             className="flex items-center justify-between px-4 py-2.5 border-b border-border-subtle"
           >
             <div className="flex items-center gap-3 min-w-0">
@@ -145,9 +174,7 @@ function DashboardMockup({ active }: { active: boolean }) {
 
       {/* Bulk import bar */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={active ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.3, delay: active ? 0.7 : 0 }}
+        style={{ opacity: bulkOpacity }}
         className="px-4 py-2.5 bg-torii-red-light/50 flex items-center gap-2"
       >
         <Upload className="h-3.5 w-3.5 text-torii-red" />
@@ -160,7 +187,15 @@ function DashboardMockup({ active }: { active: boolean }) {
 }
 
 /* ─── Browser Mockup: Deployed Trust Gate (simple "you're live" version) ─── */
-function BrowserMockup({ active }: { active: boolean }) {
+function BrowserMockup({ progress }: { progress?: MotionValue<number> }) {
+  const fallback = useMotionValue(1);
+  const p = progress ?? fallback;
+
+  const resultOpacity = useTransform(p, [0.1, 0.3], [0, 1]);
+  const resultScale = useTransform(p, [0.1, 0.3], [0.95, 1]);
+  const pillsOpacity = useTransform(p, [0.25, 0.4], [0, 1]);
+  const badgeOpacity = useTransform(p, [0.3, 0.45], [0, 1]);
+
   return (
     <div className="relative w-full">
       <div className="border border-border-default bg-surface-primary shadow-lg overflow-hidden">
@@ -207,9 +242,7 @@ function BrowserMockup({ active }: { active: boolean }) {
 
           {/* Verified result */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4, delay: active ? 0.5 : 0 }}
+            style={{ opacity: resultOpacity, scale: resultScale }}
             className="border-l-4 border-l-state-verified border border-border-default bg-background p-4"
           >
             <div className="flex items-center justify-between mb-2">
@@ -230,9 +263,7 @@ function BrowserMockup({ active }: { active: boolean }) {
 
           {/* Channel pills */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={active ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.3, delay: active ? 0.8 : 0 }}
+            style={{ opacity: pillsOpacity }}
             className="mt-3 flex gap-2"
           >
             {["Phone", "Email", "Telegram"].map((ch) => (
@@ -252,6 +283,7 @@ function BrowserMockup({ active }: { active: boolean }) {
 
       {/* Floating "Live" badge */}
       <motion.div
+        style={{ opacity: badgeOpacity }}
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         className="absolute -bottom-3 -right-3 bg-state-verified px-3 py-1.5 shadow-md z-10"
@@ -265,7 +297,7 @@ function BrowserMockup({ active }: { active: boolean }) {
 }
 
 /* ─── Mockup components array ─── */
-const mockups = [DomainMockup, DashboardMockup, BrowserMockup];
+const mockups: Array<(props: { progress?: MotionValue<number> }) => React.JSX.Element> = [DomainMockup, DashboardMockup, BrowserMockup];
 
 /* ─── Main Component ─── */
 export function HowItWorks() {
@@ -293,6 +325,12 @@ export function HowItWorks() {
   // Map scroll progress to progress bar height (0% to 100%)
   const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  // Per-step sub-progress (0→1 within each step's scroll range)
+  const step0Progress = useTransform(scrollYProgress, [0, 0.33], [0, 1]);
+  const step1Progress = useTransform(scrollYProgress, [0.33, 0.66], [0, 1]);
+  const step2Progress = useTransform(scrollYProgress, [0.66, 1], [0, 1]);
+  const stepProgresses = [step0Progress, step1Progress, step2Progress];
+
   // Payoff section scroll tracking
   const { scrollYProgress: payoffProgress } = useScroll({
     target: payoffRef,
@@ -300,17 +338,17 @@ export function HowItWorks() {
   });
 
   // Scroll-driven transforms for payoff — words "land" from above
-  const payoffBgOpacity = useTransform(payoffProgress, [0, 0.3], [0, 1]);
-  const word1Opacity = useTransform(payoffProgress, [0.12, 0.32], [0, 1]);
-  const word1Y = useTransform(payoffProgress, [0.12, 0.32], [150, 0]);
-  const word1Scale = useTransform(payoffProgress, [0.12, 0.32], [1.15, 1]);
-  const word2Opacity = useTransform(payoffProgress, [0.28, 0.48], [0, 1]);
-  const word2Y = useTransform(payoffProgress, [0.28, 0.48], [150, 0]);
-  const word2Scale = useTransform(payoffProgress, [0.28, 0.48], [1.15, 1]);
-  const subtextOpacity = useTransform(payoffProgress, [0.44, 0.58], [0, 1]);
-  const subtextY = useTransform(payoffProgress, [0.44, 0.58], [40, 0]);
-  const checklistOpacity = useTransform(payoffProgress, [0.54, 0.68], [0, 1]);
-  const checklistY = useTransform(payoffProgress, [0.54, 0.68], [40, 0]);
+  const payoffBgOpacity = useTransform(payoffProgress, [0, 0.12], [0, 1]);
+  const word1Opacity = useTransform(payoffProgress, [0.3, 0.38], [0, 1]);
+  const word1Y = useTransform(payoffProgress, [0.3, 0.38], [150, 0]);
+  const word1Scale = useTransform(payoffProgress, [0.3, 0.38], [1.15, 1]);
+  const word2Opacity = useTransform(payoffProgress, [0.36, 0.44], [0, 1]);
+  const word2Y = useTransform(payoffProgress, [0.36, 0.44], [150, 0]);
+  const word2Scale = useTransform(payoffProgress, [0.36, 0.44], [1.15, 1]);
+  const subtextOpacity = useTransform(payoffProgress, [0.48, 0.54], [0, 1]);
+  const subtextY = useTransform(payoffProgress, [0.48, 0.54], [40, 0]);
+  const checklistOpacity = useTransform(payoffProgress, [0.54, 0.6], [0, 1]);
+  const checklistY = useTransform(payoffProgress, [0.54, 0.6], [40, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     if (isMobile) return;
@@ -454,7 +492,7 @@ export function HowItWorks() {
                     >
                       {(() => {
                         const Mockup = mockups[activeStep];
-                        return <Mockup active={true} />;
+                        return <Mockup progress={stepProgresses[activeStep]} />;
                       })()}
                     </motion.div>
                   </AnimatePresence>
@@ -503,8 +541,8 @@ export function HowItWorks() {
                     {step.detail}
                   </span>
 
-                  {/* Mockup */}
-                  <Mockup active={true} />
+                  {/* Mockup — no progress prop = renders fully visible */}
+                  <Mockup />
                 </motion.div>
 
                 {/* Connector between steps */}
@@ -530,7 +568,7 @@ export function HowItWorks() {
         </div>
 
         {/* ─── Payoff: Customers Protected (scroll-driven) ─── */}
-        <div ref={payoffRef} className="relative" style={{ height: "150vh" }}>
+        <div ref={payoffRef} className="relative" style={{ height: "300vh" }}>
           <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
             {/* Base background */}
             <div className="absolute inset-0 bg-background" />
@@ -538,13 +576,13 @@ export function HowItWorks() {
             <motion.div
               className="absolute inset-0"
               style={{
-                background: "linear-gradient(to bottom, var(--color-background) 0%, var(--color-torii-red) 35%)",
+                background: "linear-gradient(to bottom, var(--color-background) 0%, var(--color-torii-red) 10%)",
                 opacity: payoffBgOpacity,
               }}
             />
 
             <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
-              <h3 className="font-display text-5xl sm:text-6xl lg:text-8xl text-white leading-[0.95]">
+              <h3 className="font-display text-7xl sm:text-8xl lg:text-9xl text-white leading-[0.95]">
                 <motion.span
                   className="inline-block"
                   style={{ opacity: word1Opacity, y: word1Y, scale: word1Scale }}

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ToriiIcon } from "@/components/torii-icon";
 import { NAV_LINKS } from "@/lib/constants";
 
 export function Navbar() {
@@ -28,7 +29,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <a href="#" className="flex items-center gap-2">
-          <ToriiGateIcon className="h-8 w-8 text-torii-red" />
+          <ToriiIcon className="h-8 w-8 text-torii-red" />
           <span className="font-mono text-xl font-extrabold tracking-tight">
             <span className="text-torii-red">Red</span>
             <span className="text-text-primary"> Torii</span>
@@ -93,21 +94,3 @@ export function Navbar() {
   );
 }
 
-function ToriiGateIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 32 32"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      <path
-        d="M4 8h24M6 8v4M26 8v4M5 12h22M9 12v16M23 12v16M7 8l-3-2h24l-3 2"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="square"
-        strokeLinejoin="miter"
-      />
-    </svg>
-  );
-}

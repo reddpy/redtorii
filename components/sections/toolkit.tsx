@@ -623,7 +623,7 @@ export function Toolkit() {
             </span>
             <br />
             <span className="font-mono text-3xl font-extrabold sm:text-4xl lg:text-5xl">
-              anti-impersonation stack
+              customer protection stack
             </span>
           </h2>
           <p className="mt-4 text-lg text-text-secondary">
