@@ -170,6 +170,31 @@ export const FAQ_ITEMS = [
       "Red Torii is the anti-impersonation stack for companies. It gives businesses the tools to protect their customers from fraud and impersonation across every communication channel — so people always know who they're really talking to.",
   },
   {
+    question: "Who is Red Torii built for?",
+    answer:
+      "Any company doing outbound communication — recruiting, healthcare, sales, financial services, customer success, and more. If your team reaches out to people via phone, email, SMS, or social channels, Red Torii helps recipients verify your legitimacy instantly.",
+  },
+  {
+    question: "Why not just use DMARC, SPF, or email authentication?",
+    answer:
+      "Those tools are important but they only cover email — and they work behind the scenes. Your customer never sees them. If someone spoofs your phone number, sends a fake Telegram message, or creates a lookalike LinkedIn profile, DMARC can't help. Red Torii is the customer-facing verification layer that works across every channel, not just email.",
+  },
+  {
+    question: "How is this different from Twitter/X verification or platform badges?",
+    answer:
+      "Platform verification is controlled by the platform, not by you. You can't verify your phone numbers on X, your SMS short codes on LinkedIn, or your support email on Telegram. Each platform is siloed. Red Torii gives you one place — on your own domain — where customers can verify any channel, regardless of platform.",
+  },
+  {
+    question: "Why not just use Trustpilot or a review site?",
+    answer:
+      "Review sites tell customers whether your company is reputable. Red Torii tells customers whether a specific phone number, email, or social handle actually belongs to your company. They solve different problems. A scammer can impersonate your brand and still link to your real Trustpilot page. Red Torii lets customers verify the exact channel contacting them — not just your brand in general.",
+  },
+  {
+    question: "How do customers verify a channel?",
+    answer:
+      "Customers visit the company's Trust Gate (which lives on the company's own domain, like verify.company.com) and search for the suspicious contact. They instantly see whether it's verified, not found, compromised, or deprecated — with clear guidance on what to do.",
+  },
+  {
     question: "How does channel verification work?",
     answer:
       "Companies verify their domain ownership via a DNS TXT record, then register their official channels in a dashboard. Each channel gets a status (verified, compromised, deprecated) that customers can look up instantly on the company's Trust Gate.",
@@ -180,24 +205,14 @@ export const FAQ_ITEMS = [
       "We support phone numbers, email domains, SMS short codes, and social media handles across X/Twitter, Telegram, Discord, WhatsApp, Instagram, LinkedIn, and Facebook.",
   },
   {
-    question: "How do customers verify a channel?",
-    answer:
-      "Customers visit the company's Trust Gate (which lives on the company's own domain, like verify.company.com) and search for the suspicious contact. They instantly see whether it's verified, not found, compromised, or deprecated — with clear guidance on what to do.",
-  },
-  {
-    question: "Can I use my own domain?",
-    answer:
-      "Yes. Red Torii supports custom domains via CNAME records. Your Trust Gate can live at verify.yourcompany.com instead of on our domain, building trust because customers see your domain, not ours.",
-  },
-  {
     question: "What happens if a channel is compromised?",
     answer:
       "You can instantly flag individual channels or activate Incident Lockdown to mark multiple channels as compromised with one click. Customers searching those channels will see a clear warning to not respond.",
   },
   {
-    question: "Who is Red Torii built for?",
+    question: "Can I use my own domain?",
     answer:
-      "Any company doing outbound communication — recruiting, healthcare, sales, financial services, customer success, and more. If your team reaches out to people via phone, email, SMS, or social channels, Red Torii helps recipients verify your legitimacy instantly.",
+      "Yes. Red Torii supports custom domains via CNAME records. Your Trust Gate can live at verify.yourcompany.com instead of on our domain, building trust because customers see your domain, not ours.",
   },
   {
     question: "How can I get access?",

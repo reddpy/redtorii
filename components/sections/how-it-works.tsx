@@ -337,18 +337,20 @@ export function HowItWorks() {
     offset: ["start 0.7", "end end"],
   });
 
-  // Scroll-driven transforms for payoff — words "land" from above
-  const payoffBgOpacity = useTransform(payoffProgress, [0, 0.12], [0, 1]);
-  const word1Opacity = useTransform(payoffProgress, [0.3, 0.38], [0, 1]);
-  const word1Y = useTransform(payoffProgress, [0.3, 0.38], [150, 0]);
-  const word1Scale = useTransform(payoffProgress, [0.3, 0.38], [1.15, 1]);
-  const word2Opacity = useTransform(payoffProgress, [0.36, 0.44], [0, 1]);
-  const word2Y = useTransform(payoffProgress, [0.36, 0.44], [150, 0]);
-  const word2Scale = useTransform(payoffProgress, [0.36, 0.44], [1.15, 1]);
-  const subtextOpacity = useTransform(payoffProgress, [0.48, 0.54], [0, 1]);
-  const subtextY = useTransform(payoffProgress, [0.48, 0.54], [40, 0]);
-  const checklistOpacity = useTransform(payoffProgress, [0.54, 0.6], [0, 1]);
-  const checklistY = useTransform(payoffProgress, [0.54, 0.6], [40, 0]);
+  // Whole screen tints more red as you scroll, fully solid by 40%
+  const payoffBgOpacity = useTransform(payoffProgress, [0, 0.4], [0, 1]);
+
+  // Phase 2: text content appears on solid red (50%+ scroll)
+  const word1Opacity = useTransform(payoffProgress, [0.5, 0.55], [0, 1]);
+  const word1Y = useTransform(payoffProgress, [0.5, 0.55], [150, 0]);
+  const word1Scale = useTransform(payoffProgress, [0.5, 0.55], [1.15, 1]);
+  const word2Opacity = useTransform(payoffProgress, [0.55, 0.6], [0, 1]);
+  const word2Y = useTransform(payoffProgress, [0.55, 0.6], [150, 0]);
+  const word2Scale = useTransform(payoffProgress, [0.55, 0.6], [1.15, 1]);
+  const subtextOpacity = useTransform(payoffProgress, [0.62, 0.67], [0, 1]);
+  const subtextY = useTransform(payoffProgress, [0.62, 0.67], [40, 0]);
+  const checklistOpacity = useTransform(payoffProgress, [0.67, 0.72], [0, 1]);
+  const checklistY = useTransform(payoffProgress, [0.67, 0.72], [40, 0]);
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
     if (isMobile) return;
@@ -568,20 +570,17 @@ export function HowItWorks() {
         </div>
 
         {/* ─── Payoff: Customers Protected (scroll-driven) ─── */}
-        <div ref={payoffRef} className="relative" style={{ height: "300vh" }}>
+        <div ref={payoffRef} className="relative" style={{ height: "500vh" }}>
           <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
             {/* Base background */}
             <div className="absolute inset-0 bg-background" />
-            {/* Gradient that fades in as you scroll */}
+            {/* Red tint that builds as you scroll */}
             <motion.div
-              className="absolute inset-0"
-              style={{
-                background: "linear-gradient(to bottom, var(--color-background) 0%, var(--color-torii-red) 10%)",
-                opacity: payoffBgOpacity,
-              }}
+              className="absolute inset-0 bg-torii-red"
+              style={{ opacity: payoffBgOpacity }}
             />
 
-            <div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
+<div className="relative mx-auto max-w-7xl px-6 lg:px-8 text-center">
               <h3 className="font-display text-7xl sm:text-8xl lg:text-9xl text-white leading-[0.95]">
                 <motion.span
                   className="inline-block"
