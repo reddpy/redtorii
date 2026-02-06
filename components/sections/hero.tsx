@@ -60,7 +60,7 @@ export function Hero() {
               asChild
               className="bg-torii-red text-text-on-red hover:bg-torii-red-hover px-8 text-base font-mono font-semibold tracking-wide gap-2"
             >
-              <a href="mailto:hello@redtorii.com">
+              <a href="https://calendly.com/karan-redtorii/30min">
                 Get Early Access
                 <ArrowRight className="h-4 w-4" />
               </a>

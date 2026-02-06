@@ -39,7 +39,7 @@ export function CTASection() {
             asChild
             className="bg-white text-torii-red hover:bg-white/90 px-8 text-base font-mono font-bold tracking-wide"
           >
-            <a href="mailto:hello@redtorii.com">Get Early Access</a>
+            <a href="https://calendly.com/karan-redtorii/30min">Get Early Access</a>
           </Button>
         </motion.div>
       </div>

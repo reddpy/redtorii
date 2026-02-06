@@ -56,7 +56,7 @@ export function Navbar() {
 
         <div className="hidden md:block">
           <Button asChild className="bg-torii-red text-text-on-red hover:bg-torii-red-hover font-mono font-semibold tracking-wide">
-            <a href="mailto:hello@redtorii.com">Get Early Access</a>
+            <a href="https://calendly.com/karan-redtorii/30min">Get Early Access</a>
           </Button>
         </div>
 
@@ -89,7 +89,7 @@ export function Navbar() {
                 </a>
               ))}
               <Button asChild className="mt-2 w-full bg-torii-red text-text-on-red hover:bg-torii-red-hover font-mono font-semibold">
-                <a href="mailto:hello@redtorii.com">Get Early Access</a>
+                <a href="https://calendly.com/karan-redtorii/30min">Get Early Access</a>
               </Button>
             </div>
           </motion.div>
