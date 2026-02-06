@@ -163,7 +163,7 @@ export const VERIFICATION_STATES = [
   },
 ];
 
-export const FAQ_ITEMS = [
+export const FAQ_ITEMS: { question: string; answer: string; href?: string; linkLabel?: string }[] = [
   {
     question: "What is Red Torii?",
     answer:
@@ -217,7 +217,9 @@ export const FAQ_ITEMS = [
   {
     question: "How can I get access?",
     answer:
-      "We're onboarding early partners now. Reach out at hello@redtorii.com and we'll walk you through the platform and discuss how Red Torii fits your use case.",
+      "We're onboarding early partners now. Book a call and we'll walk you through the platform and discuss how Red Torii fits your use case.",
+    href: "https://calendly.com/karan-redtorii/30min",
+    linkLabel: "Book a call",
   },
 ];
 
@@ -349,10 +351,10 @@ export const FOOTER_LINKS = {
   product: [
     { label: "How It Works", href: "#how-it-works" },
     { label: "Toolkit", href: "#toolkit" },
-    { label: "Early Access", href: "mailto:hello@redtorii.com" },
+    { label: "Early Access", href: "https://calendly.com/karan-redtorii/30min" },
   ],
   company: [
-    { label: "Contact", href: "mailto:hello@redtorii.com" },
+    { label: "Contact", href: "mailto:karan@redtorii.com" },
   ],
   legal: [
     { label: "Privacy Policy", href: "#" },

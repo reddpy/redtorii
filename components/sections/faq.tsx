@@ -56,6 +56,19 @@ export function FAQ() {
                       >
                         <p className="pb-5 text-sm leading-relaxed text-text-secondary">
                           {item.answer}
+                          {item.href && (
+                            <>
+                              {" "}
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-semibold text-torii-red underline underline-offset-2 hover:text-torii-red-hover"
+                              >
+                                {item.linkLabel ?? item.href}
+                              </a>
+                            </>
+                          )}
                         </p>
                       </motion.div>
                     )}
